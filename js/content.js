@@ -24,18 +24,20 @@ const SITE = {
    *           (keep it short, muted-friendly, under ~25 MB; it loops silently in the background)
    * Option B: set youtube to the video ID, e.g. "dQw4w9WgXcQ" (used for the "Watch full reel" button)
    * poster = an image shown while the video loads
+   * slides = until there's a video, these screenshots play as a slow slideshow instead
    */
   showreel: {
     file: "",
     youtube: "",
     poster: "",
+    slides: [
+      "assets/images/beatemup-fight.webp",
+      "assets/images/hyperflux-2.webp",
+      "assets/images/beatemup-boss.webp",
+      "assets/images/hyperflux-1.webp",
+      "assets/images/beatemup-street.webp",
+    ],
   },
-  // Games that shaped how I think about design
-  influences: [
-    "Elden Ring", "The Witcher 3", "Black Myth: Wukong", "Dishonored", "Sekiro",
-    "Dark Souls III", "Hollow Knight", "Clair Obscur: Expedition 33", "BioShock",
-    "Resident Evil", "Valorant", "Apex Legends", "The Finals", "Palworld", "Minecraft",
-  ],
   // Short facts shown on the home screen
   stats: [
     { label: "Games", value: "4" },
@@ -56,16 +58,19 @@ const SITE = {
  * status = shown as a tag, e.g. "Released", "In development", "Prototype"
  * links  = buttons on the game page, add as many as you want
  * docs   = your design documents; each one becomes a card on the game page
+ * portrait = true for mobile games, so screenshots show as phone screens
  */
 const GAMES = [
   {
-    slug: "tractor-trolley-run",
-    title: "Tractor Trolley Run",          // working title, rename anytime
+    slug: "horn-ok-please",
+    title: "Horn OK Please",
+    subtitle: "Mai Nikla Gaddi Le Ke",
     genre: "Endless runner",
     platform: "Mobile",
     style: "Pixel art",
     status: "In development",
-    accent: "ember",
+    accent: "marigold",
+    portrait: true,
     pitch:
       "Drive a tractor with a trolley that swings behind you on a delay. Dodge traffic and obstacles across India.",
     story:
@@ -74,11 +79,16 @@ const GAMES = [
     features: [
       "Delayed trolley swing: you steer the tractor and have to plan for the trolley",
       "Five regions of India: Coastal, Plateau, Desert, Plains, Mountains",
-      "Hand-made pixel art",
+      "Hand-made pixel art inspired by Indian truck art",
+      "Garage, coins and a leaderboard",
       "Built for mobile touch controls",
     ],
-    cover: "",
-    screenshots: [],
+    cover: "",         // portrait games use their screenshots as the cover
+    screenshots: [
+      "assets/images/horn-menu.webp",
+      "assets/images/horn-gameplay.webp",
+      "assets/images/horn-paused.webp",
+    ],
     trailer: "",       // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
     links: [],         // e.g. { label: "Play on itch.io", url: "https://wrath65.itch.io/..." }
     docs: [],          // e.g. { title: "Game Design Doc", url: "docs/tractor-gdd.pdf", note: "Core loop & regions" }
@@ -90,7 +100,7 @@ const GAMES = [
     platform: "PC",
     style: "2D pixel art with CRT filter",
     status: "Level 1 of 5 complete",
-    accent: "crimson",
+    accent: "rose",
     pitch:
       "A group of bodybuilder friends see a girl being kidnapped and go after her. It turns out she was just late.",
     story:
@@ -101,11 +111,20 @@ const GAMES = [
     features: [
       "5 stages with different kinds of goons and a boss fight at the end of each",
       "Currently: Level 1 done with 2 playable characters, 5 enemy types and 1 boss",
+      "Fighters so far: The Powerlifter and The Show-Off",
+      "First boss: Big Pappu",
+      "Light and heavy strings, dive attacks, charged heavies and a combo-filled special",
+      "Local co-op: Player 2 can press Start and jump in",
       "2D pixel art with a CRT TV filter",
       "Futuristic India setting, 2125",
     ],
-    cover: "",
-    screenshots: [],
+    cover: "assets/images/beatemup-fight.webp",
+    screenshots: [
+      "assets/images/beatemup-select.webp",
+      "assets/images/beatemup-street.webp",
+      "assets/images/beatemup-fight.webp",
+      "assets/images/beatemup-boss.webp",
+    ],
     trailer: "",
     links: [],
     docs: [],
@@ -117,7 +136,7 @@ const GAMES = [
     platform: "PC",
     style: "3D, clockwork / steampunk",
     status: "Work in progress",
-    accent: "jade",
+    accent: "brass",
     pitch:
       "In an India that never won its freedom, steal the secret power behind the British Empire's clockwork machines.",
     story:
@@ -144,7 +163,7 @@ const GAMES = [
     platform: "PC",
     style: "3D",
     status: "Released · 2024 · Team project",
-    accent: "azure",
+    accent: "cyan",
     pitch:
       "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
     story:
@@ -158,8 +177,11 @@ const GAMES = [
       "Speedrunning across 4 planets",
       "Invisible Planet: the world only shows up under special light",
     ],
-    cover: "",
-    screenshots: [],
+    cover: "assets/images/hyperflux-2.webp",
+    screenshots: [
+      "assets/images/hyperflux-2.webp",
+      "assets/images/hyperflux-1.webp",
+    ],
     trailer: "",
     links: [],
     docs: [],

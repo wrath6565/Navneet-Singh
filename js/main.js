@@ -13,8 +13,21 @@ document.querySelectorAll("#year").forEach((el) => (el.textContent = new Date().
 // Image if set, otherwise an atmospheric placeholder
 function art(src, label, accent) {
   if (src) return `<img src="${esc(src)}" alt="${esc(label)}" loading="lazy">`;
-  return `<div class="placeholder accent-${esc(accent || "ember")}"><span>${esc(label)}</span></div>`;
+  return `<div class="placeholder accent-${esc(accent || "marigold")}"><span>${esc(label)}</span></div>`;
 }
+
+// Cover for a game: mobile games show their screens as phones, others use the cover image
+function cover(g) {
+  if (g.portrait && g.screenshots.length) {
+    return `<div class="phones accent-${esc(g.accent)}">${g.screenshots.slice(0, 3)
+      .map((s, i) => `<div class="phone" style="--n:${i}"><img src="${esc(s)}" alt="${esc(g.title)} screen ${i + 1}" loading="lazy"></div>`)
+      .join("")}</div>`;
+  }
+  return art(g.cover, g.genre, g.accent);
+}
+
+// Which game a screenshot belongs to (for captions)
+const gameFor = (src) => GAMES.find((g) => g.screenshots.includes(src) || g.cover === src);
 
 // Nav gets a backdrop once you scroll
 const nav = document.querySelector(".nav");
@@ -40,8 +53,28 @@ if (heroMedia) {
       `<video class="hero-video" src="${esc(reel.file)}" ${reel.poster ? `poster="${esc(reel.poster)}"` : ""}
         autoplay muted loop playsinline preload="auto"></video>`
     );
-  } else {
-    heroMedia.insertAdjacentHTML("beforeend", `<span class="reel-soon">Showreel coming soon</span>`);
+  } else if (reel.slides && reel.slides.length) {
+    // No video yet: crossfade through gameplay stills with a slow pan
+    heroMedia.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="slides">${reel.slides.map((src, i) => `<img class="slide${i ? "" : " on"}" src="${esc(src)}" alt="">`).join("")}</div>`
+    );
+    const slides = heroMedia.querySelectorAll(".slide");
+    const caption = document.getElementById("hero-caption");
+    let cur = 0;
+    const label = () => {
+      const g = gameFor(reel.slides[cur]);
+      caption.innerHTML = g ? `<span>Now showing</span> ${esc(g.title)}` : "";
+    };
+    label();
+    if (slides.length > 1 && !reduceMotion) {
+      setInterval(() => {
+        slides[cur].classList.remove("on");
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add("on");
+        label();
+      }, 5000);
+    }
   }
 
   // Full showreel modal (YouTube if set, else the local file with sound)
@@ -67,7 +100,7 @@ if (heroMedia) {
   const resize = () => {
     w = cv.width = cv.offsetWidth * devicePixelRatio;
     h = cv.height = cv.offsetHeight * devicePixelRatio;
-    parts = Array.from({ length: Math.min(90, Math.round(w / 18)) }, () => spawn(true));
+    parts = Array.from({ length: Math.min(50, Math.round(w / 30)) }, () => spawn(true));
   };
   const spawn = (anywhere) => ({
     x: Math.random() * w,
@@ -84,8 +117,8 @@ if (heroMedia) {
       p.t += 0.02; p.y -= p.vy; p.x += p.vx + Math.sin(p.t) * 0.3;
       if (p.y < -10) Object.assign(p, spawn(false));
       const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-      g.addColorStop(0, `rgba(255, 196, 120, ${p.a})`);
-      g.addColorStop(1, "rgba(255, 120, 40, 0)");
+      g.addColorStop(0, `rgba(255, 205, 90, ${p.a * 0.8})`);
+      g.addColorStop(1, "rgba(242, 181, 42, 0)");
       ctx.fillStyle = g;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2); ctx.fill();
     }
@@ -104,23 +137,19 @@ if (stats) {
     .join("");
 }
 
-const influences = document.getElementById("influences");
-if (influences) {
-  influences.innerHTML = SITE.influences.map((g, i) => `<li style="--i:${i}">${esc(g)}</li>`).join("");
-}
-
 const gamesGrid = document.getElementById("games-grid");
 if (gamesGrid) {
   gamesGrid.innerHTML = GAMES.map(
     (g, i) => `
     <a class="game-card reveal tilt accent-${esc(g.accent)}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
-      <div class="game-art">${art(g.cover, g.genre, g.accent)}</div>
+      <div class="game-art">${cover(g)}</div>
       <div class="game-body">
         <div class="game-top">
-          <span class="game-num">${["I", "II", "III", "IV", "V", "VI", "VII", "VIII"][i] || i + 1}</span>
+          <span class="game-num">${String(i + 1).padStart(2, "0")}</span>
           <span class="tag">${esc(g.status)}</span>
         </div>
         <h3>${esc(g.title)}</h3>
+        ${g.subtitle ? `<p class="game-subtitle">${esc(g.subtitle)}</p>` : ""}
         <p class="game-meta">${esc(g.genre)} · ${esc(g.platform)}</p>
         <p class="game-pitch">${esc(g.pitch)}</p>
         <span class="more">Discover <span class="arrow">→</span></span>
@@ -136,7 +165,7 @@ if (exploreGrid) {
     const href = e.url ? ` href="${esc(e.url)}" target="_blank" rel="noopener"` : "";
     return `
     <${tag} class="explore-card reveal tilt" style="--d:${i * 80}ms"${href}>
-      <div class="explore-art">${art(e.image, e.type, "jade")}</div>
+      <div class="explore-art">${art(e.image, e.type, ["marigold", "teal", "rose", "cyan"][i % 4])}</div>
       <p class="explore-type">${esc(e.type)}</p>
       <h3>${esc(e.title)}</h3>
       <p class="explore-sum">${esc(e.summary)}</p>
@@ -174,7 +203,7 @@ if (gamePage) {
     const list = (items) => items.map((x, i) => `<li class="reveal" style="--d:${i * 60}ms">${esc(x)}</li>`).join("");
 
     const shots = g.screenshots.length
-      ? g.screenshots.map((s) => `<div class="shot reveal">${art(s, g.title)}</div>`).join("")
+      ? g.screenshots.map((s, i) => `<button type="button" class="shot reveal${g.portrait ? " tall" : ""}" style="--d:${i * 80}ms" data-full="${esc(s)}" aria-label="View screenshot ${i + 1} larger">${art(s, g.title)}</button>`).join("")
       : [1, 2, 3].map((n, i) => `<div class="shot reveal" style="--d:${i * 80}ms">${art("", `Screenshot ${n}`, g.accent)}</div>`).join("");
 
     const docs = g.docs.length
@@ -186,14 +215,16 @@ if (gamePage) {
       ? g.links.map((l) => `<a class="btn btn-primary" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} <span class="arrow">→</span></a>`).join("")
       : `<span class="btn btn-ghost is-disabled">Playable build coming soon</span>`;
 
+    document.body.classList.add(`accent-${g.accent}`);
     gamePage.innerHTML = `
       <section class="game-hero accent-${esc(g.accent)}">
         <a class="back" href="index.html#games"><span class="arrow">←</span> All games</a>
         <div class="game-hero-grid">
-          <div class="game-hero-art reveal">${art(g.cover, g.genre, g.accent)}</div>
+          <div class="game-hero-art reveal${g.portrait ? " is-phones" : ""}">${cover(g)}</div>
           <div class="reveal" style="--d:120ms">
             <span class="tag">${esc(g.status)}</span>
             <h1 class="game-title">${esc(g.title)}</h1>
+            ${g.subtitle ? `<p class="game-subtitle big">${esc(g.subtitle)}</p>` : ""}
             <p class="game-pitch big">${esc(g.pitch)}</p>
             <dl class="specs">
               <div><dt>Genre</dt><dd>${esc(g.genre)}</dd></div>
@@ -216,12 +247,29 @@ if (gamePage) {
           <div class="video reveal"><iframe src="${esc(g.trailer)}" title="${esc(g.title)} trailer" allowfullscreen></iframe></div>` : ""}
 
         <h2 class="sub-title reveal">Screenshots</h2>
-        <div class="shots">${shots}</div>
+        <div class="shots${g.portrait ? " portrait" : ""}">${shots}</div>
 
         <h2 class="sub-title reveal">Documentation</h2>
         <div class="docs">${docs}</div>
       </section>`;
   }
+}
+
+// ---------- Screenshot lightbox ----------
+const modal = document.getElementById("reel-modal");
+if (modal && gamePage) {
+  const body = document.getElementById("reel-body");
+  const close = () => { modal.hidden = true; body.innerHTML = ""; modal.classList.remove("image"); };
+  gamePage.addEventListener("click", (e) => {
+    const shot = e.target.closest(".shot[data-full]");
+    if (!shot) return;
+    body.innerHTML = `<img src="${esc(shot.dataset.full)}" alt="">`;
+    modal.classList.add("image");
+    modal.hidden = false;
+  });
+  document.getElementById("reel-close").addEventListener("click", close);
+  modal.addEventListener("click", (e) => e.target === modal && close());
+  addEventListener("keydown", (e) => e.key === "Escape" && close());
 }
 
 // ---------- Micro animations ----------
@@ -230,7 +278,7 @@ const io = new IntersectionObserver(
   (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))),
   { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
 );
-document.querySelectorAll(".reveal, .influences li").forEach((el) => io.observe(el));
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 requestAnimationFrame(() => document.body.classList.add("loaded"));
 
 // Cards gently tilt toward the cursor and a light follows it
