@@ -12,12 +12,30 @@
 
 const SITE = {
   name: "Navneet Singh",
-  handle: "Wrath",
-  tagline: "Game designer & developer building worlds rooted in India.",
+  handle: "Wrath65",
+  tagline: "Crafting worlds rooted in India, shaped by the games that shaped me.",
   intro:
     "I make games that mix arcade energy with Indian settings, myths and humour, " +
     "from pixel-art tractors swinging through traffic to steampunk Calcutta in 1970. " +
     "This is where I keep everything I'm building.",
+  /*
+   * SHOWREEL: plays at the very top of the site.
+   * Option A: put a file in assets/video/ and set file, e.g. "assets/video/showreel.mp4"
+   *           (keep it short, muted-friendly, under ~25 MB; it loops silently in the background)
+   * Option B: set youtube to the video ID, e.g. "dQw4w9WgXcQ" (used for the "Watch full reel" button)
+   * poster = an image shown while the video loads
+   */
+  showreel: {
+    file: "",
+    youtube: "",
+    poster: "",
+  },
+  // Games that shaped how I think about design
+  influences: [
+    "Elden Ring", "The Witcher 3", "Black Myth: Wukong", "Dishonored", "Sekiro",
+    "Dark Souls III", "Hollow Knight", "Clair Obscur: Expedition 33", "BioShock",
+    "Resident Evil", "Valorant", "Apex Legends", "The Finals", "Palworld", "Minecraft",
+  ],
   // Short facts shown on the home screen
   stats: [
     { label: "Games", value: "4" },
@@ -47,7 +65,7 @@ const GAMES = [
     platform: "Mobile",
     style: "Pixel art",
     status: "In development",
-    accent: "saffron",
+    accent: "ember",
     pitch:
       "Drive a tractor with a trolley that swings behind you on a delay. Dodge traffic and obstacles across India.",
     story:
@@ -72,7 +90,7 @@ const GAMES = [
     platform: "PC",
     style: "2D pixel art with CRT filter",
     status: "Level 1 of 5 complete",
-    accent: "magenta",
+    accent: "crimson",
     pitch:
       "A group of bodybuilder friends see a girl being kidnapped and go after her. It turns out she was just late.",
     story:
@@ -99,7 +117,7 @@ const GAMES = [
     platform: "PC",
     style: "3D, clockwork / steampunk",
     status: "Work in progress",
-    accent: "teal",
+    accent: "jade",
     pitch:
       "In an India that never won its freedom, steal the secret power behind the British Empire's clockwork machines.",
     story:
@@ -126,7 +144,7 @@ const GAMES = [
     platform: "PC",
     style: "3D",
     status: "Released · 2024 · Team project",
-    accent: "violet",
+    accent: "azure",
     pitch:
       "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
     story:
@@ -178,7 +196,7 @@ const EXPLORATIONS = [
   {
     title: "More coming soon",
     type: "???",
-    summary: "Insert coin to continue…",
+    summary: "The next chapter is being written.",
     image: "",
     url: "",
   },
