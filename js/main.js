@@ -200,29 +200,6 @@ if (heroMedia) {
   else { hint.hidden = true; sprite(TROLLEY, trolley.x, trolley.y, -Math.PI / 2); sprite(TRACTOR, car.x, car.y, -Math.PI / 2); }
 }
 
-// ---------- Player profile ----------
-const profile = document.getElementById("profile");
-if (profile) {
-  const p = SITE.profile;
-  profile.innerHTML = `
-    <div class="profile-head">
-      <div class="avatar" aria-hidden="true">N</div>
-      <div>
-        <p class="profile-name">${esc(SITE.handle)} <span>Lv. 65</span></p>
-        <p class="profile-class">${esc(p.class)} · ${esc(p.origin)}</p>
-      </div>
-    </div>
-    <ul class="bars">${p.stats.map((st, i) => `
-      <li style="--v:${st.value * 10}%; --i:${i}" class="${st.value <= 2 ? "low" : ""}">
-        <span class="bar-name">${esc(st.name)}</span>
-        <span class="bar-label">${esc(st.label)}${st.note ? ` <em>${esc(st.note)}</em>` : ""}</span>
-        <span class="bar"><span></span></span>
-      </li>`).join("")}
-    </ul>
-    <p class="traits-title">Passive traits</p>
-    <ul class="traits">${p.traits.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
-}
-
 // ---------- Home sections ----------
 const stats = document.getElementById("stats");
 if (stats) {

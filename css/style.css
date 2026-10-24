@@ -188,8 +188,8 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .section-sub { color: var(--muted); margin: 22px 0 0; max-width: 560px; font-size: 17px; }
 
 /* About */
-.about { padding-top: 72px; }
-.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
+.about { padding-top: 72px; padding-bottom: 24px; }
+.about-grid { display: block; }
 .about-intro { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.25; letter-spacing: -.015em; margin: 0 0 40px; max-width: 920px; }
 .stats { display: flex; gap: clamp(28px, 5vw, 72px); flex-wrap: wrap; }
 .stat b { display: block; font-family: var(--display); font-size: 44px; font-weight: 800; color: var(--marigold); line-height: 1; margin-bottom: 6px; }
@@ -299,34 +299,6 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 @keyframes fade { from { opacity: 0; } }
 @keyframes pop { from { opacity: 0; transform: scale(.94); } }
 
-/* Player profile */
-.profile {
-  background: var(--panel); border: 2px solid var(--line-strong); border-radius: 18px; padding: 24px;
-  box-shadow: 10px 10px 0 color-mix(in srgb, var(--marigold) 80%, transparent);
-}
-.profile-head { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
-.avatar {
-  width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center;
-  font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--bg);
-  background: linear-gradient(135deg, var(--marigold), var(--rose));
-}
-.profile-name { margin: 0; font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; }
-.profile-name span { font-family: var(--pixel); font-size: 11px; font-weight: 400; color: var(--bg); background: var(--teal); padding: 2px 6px; border-radius: 4px; vertical-align: middle; }
-.profile-class { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
-.bars { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 12px; }
-.bars li { display: grid; grid-template-columns: 64px 1fr; gap: 2px 12px; align-items: center; }
-.bar-name { font-family: var(--pixel); font-size: 12px; color: var(--marigold); grid-row: span 2; }
-.bar-label { font-size: 13px; color: var(--muted); }
-.bar-label em { font-style: normal; font-family: var(--pixel); font-size: 10px; color: var(--chili); margin-left: 6px; }
-.bar { height: 10px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
-.bar span { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, var(--marigold) 0 8px, color-mix(in srgb, var(--marigold) 75%, black) 8px 10px); transition: width 1.2s var(--ease); transition-delay: calc(300ms + var(--i) * 120ms); }
-.profile.in .bar span { width: var(--v); }
-.bars li.low .bar span { background: var(--chili); animation: blinkbar 1s steps(1) infinite; }
-@keyframes blinkbar { 50% { opacity: .3; } }
-.traits-title { font-family: var(--pixel); font-size: 11px; color: var(--teal); margin: 0 0 8px; }
-.traits { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
-.traits li::before { content: "+ "; color: var(--teal); font-weight: 700; }
-
 /* ===== Game page ===== */
 .game-hero { max-width: 1240px; margin: 0 auto; padding: 120px clamp(16px, 6vw, 96px) 20px; }
 .back { font-weight: 600; font-size: 14px; color: var(--muted); text-decoration: none; }
@@ -383,7 +355,6 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal, .hero-name .ch { opacity: 1 !important; transform: none !important; }
-  .profile .bar span { width: var(--v); }
   .slide.on { transform: none; }
   html { scroll-behavior: auto; }
 }

@@ -14,27 +14,8 @@ const SITE = {
   name: "Navneet Singh",
   handle: "Wrath65",
   role: "Game Designer",
-  tagline: "Game designer and problem solver, building worlds rooted in India.",
-  intro: "I design games from Indian roads, myths and what-ifs.",
-  /*
-   * PLAYER PROFILE: an RPG-style character sheet. value is out of 10.
-   */
-  profile: {
-    class: "Game Designer",
-    origin: "India",
-    stats: [
-      { name: "STR", label: "Gym, most days", value: 8 },
-      { name: "CRAFT", label: "Cooking", value: 7 },
-      { name: "LORE", label: "Anime", value: 9 },
-      { name: "PARTY", label: "Network", value: 9 },
-      { name: "SLEEP", label: "Sleep schedule", value: 1, note: "none" },
-    ],
-    traits: [
-      "Quiet at first, talkative with friends",
-      "Has a contact for every problem",
-      "Unwinds with Elden Ring, Sekiro and The Finals",
-    ],
-  },
+  tagline: "I make the games I want to play.",
+  intro: "Fun first. Everything after that is problem solving.",
   /*
    * SHOWREEL: plays at the very top of the site.
    * Option A: put a file in assets/video/ and set file, e.g. "assets/video/showreel.mp4"
