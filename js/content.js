@@ -57,58 +57,57 @@ const GAMES = [
     slug: "horn-ok-please",
     title: "Horn OK Please",
     subtitle: "Mai Nikla Gaddi Le Ke",
-    genre: "Endless runner",
-    platform: "Mobile",
-    style: "Pixel art",
+    genre: "Endless lane runner",
+    platform: "Mobile & PC",
+    style: "Top-down pixel art, truck-art palette",
     status: "In development",
     accent: "marigold",
     portrait: true,
     pitch:
-      "Drive a tractor with a trolley that swings behind you on a delay. Dodge traffic and obstacles across India.",
+      "A one-thumb highway runner. Tow a swinging trailer through trucks, tuk-tuks, camel carts and cows.",
     story:
-      "Hit the road across India's regions: the coast, the plateau, the desert, the plains and the mountains. " +
-      "Each region brings its own traffic, obstacles and scenery.",
+      "Tap left or right to switch lanes on a highway that never ends. The trailer swings behind you on every move, " +
+      "and every 800 metres the road crosses into a new region with new traffic and music.",
     features: [
-      "Delayed trolley swing: you steer the tractor and have to plan for the trolley",
-      "Five regions of India: Coastal, Plateau, Desert, Plains, Mountains",
-      "Hand-made pixel art inspired by Indian truck art",
-      "Garage, coins and a leaderboard",
-      "Built for mobile touch controls",
+      "Two inputs, lots of depth: you learn to read the traffic",
+      "A trailer that swings on every lane change",
+      "Five regions, roads that narrow and widen, and traffic that signals before it swerves",
+      "Power-ups and a garage of upgrades and skins",
     ],
     cover: "",         // portrait games use their screenshots as the cover
     screenshots: [
       "assets/images/horn-menu.webp",
-      "assets/images/horn-gameplay.webp",
+      "assets/images/horn-beach.webp",
+      "assets/images/horn-desert.webp",
+      "assets/images/horn-mountains.webp",
+      "assets/images/horn-garage.webp",
       "assets/images/horn-paused.webp",
     ],
     trailer: "",       // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
     links: [],         // e.g. { label: "Play on itch.io", url: "https://wrath65.itch.io/..." }
-    docs: [],          // e.g. { title: "Game Design Doc", url: "docs/tractor-gdd.pdf", note: "Core loop & regions" }
+    docs: [
+      { title: "Game Design Document", url: "https://claude.ai/artifact/1qfrEE1BnVPwnG2atGEr7X", note: "Core loop, regions, economy, tension curve, UI, art and playtesting" },
+    ],
   },
   {
-    slug: "express-delivery-2125",
-    title: "Express Delivery 2125",        // working title, rename anytime
-    genre: "2.5D Beat 'em up",
-    platform: "PC",
-    style: "2D pixel art with CRT filter",
-    status: "Level 1 of 5 complete",
+    slug: "return-to-sender",
+    title: "Return to Sender",
+    subtitle: "A beat 'em up for 1–2 players",
+    genre: "2.5D beat 'em up",
+    platform: "PC · couch co-op",
+    style: "640×360 pixel art, CRT filter",
+    status: "Level 1 of 5 in progress",
     accent: "rose",
     pitch:
-      "A group of bodybuilder friends see a girl being kidnapped and go after her. It turns out she was just late.",
+      "Gym friends chase a kidnapping through five levels. It turns out to be a very rich dad's express home delivery.",
     story:
-      "India, 2125. A few bodybuilder friends walk out of the gym and see a girl being dragged away. " +
-      "They chase the kidnappers, only to find out the girl was running late, so her father hired an express " +
-      "delivery service that doesn't take no for an answer. Inspired by Teenage Mutant Ninja Turtles and " +
-      "Marvel Cosmic Invasion.",
+      "Gym friends see a kid bundled into a van and give chase, up a tower, onto a flying cargo truck and into a corporate high-rise. " +
+      "The kid was just late home. Dad booked Swift-Drop Express, and Swift-Drop never takes no for an answer.",
     features: [
-      "5 stages with different kinds of goons and a boss fight at the end of each",
-      "Currently: Level 1 done with 2 playable characters, 5 enemy types and 1 boss",
-      "Fighters so far: The Powerlifter and The Show-Off",
-      "First boss: Big Pappu",
-      "Light and heavy strings, dive attacks, charged heavies and a combo-filled special",
-      "Local co-op: Player 2 can press Start and jump in",
-      "2D pixel art with a CRT TV filter",
-      "Futuristic India setting, 2125",
+      "Every hit feels huge: hitstop, shake, knockback, enemies bowling into each other",
+      "Each level brings a new enemy, a new hazard and a new boss",
+      "Drop-in couch co-op for two players",
+      "First boss: Big Pappu and his giant pipe",
     ],
     cover: "assets/images/beatemup-fight.webp",
     screenshots: [
@@ -119,7 +118,9 @@ const GAMES = [
     ],
     trailer: "",
     links: [],
-    docs: [],
+    docs: [
+      { title: "Design Bible", url: "https://claude.ai/artifact/SeD2rHPqbreBwznNV8aJT4", note: "Story, characters, move list, enemies, bosses, levels and build status" },
+    ],
   },
   {
     slug: "rahu-1970",
