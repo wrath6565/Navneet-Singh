@@ -58,25 +58,6 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   66% { transform: translate(2%, -3%); } 100% { transform: translate(0, 0); }
 }
 
-/* Truck-art bunting strip */
-.bunting {
-  height: 22px; position: relative; z-index: 4;
-  background:
-    linear-gradient(135deg, var(--marigold) 25%, transparent 25%) 0 0 / 88px 22px,
-    linear-gradient(225deg, var(--marigold) 25%, transparent 25%) 0 0 / 88px 22px,
-    linear-gradient(135deg, var(--teal) 25%, transparent 25%) 22px 0 / 88px 22px,
-    linear-gradient(225deg, var(--teal) 25%, transparent 25%) 22px 0 / 88px 22px,
-    linear-gradient(135deg, var(--rose) 25%, transparent 25%) 44px 0 / 88px 22px,
-    linear-gradient(225deg, var(--rose) 25%, transparent 25%) 44px 0 / 88px 22px,
-    linear-gradient(135deg, var(--chili) 25%, transparent 25%) 66px 0 / 88px 22px,
-    linear-gradient(225deg, var(--chili) 25%, transparent 25%) 66px 0 / 88px 22px;
-  background-repeat: repeat-x;
-  border-top: 3px solid var(--text);
-  animation: sway 4s ease-in-out infinite alternate;
-  transform-origin: top;
-}
-@keyframes sway { from { transform: skewX(-1deg); } to { transform: skewX(1deg); } }
-
 /* ===== Nav ===== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
