@@ -13,7 +13,7 @@
 const SITE = {
   name: "Navneet Singh",
   handle: "Wrath65",
-  role: "Game Designer",
+  role: "Game Designer & 3D Artist",
   tagline: "I make the games I want to play.",
   intro: "Fun first. Everything after that is problem solving.",
   /*
