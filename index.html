@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navneet Singh · Game Portfolio</title>
+  <meta name="description" content="Games and experiments by Navneet Singh, a game designer and developer building worlds rooted in India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav-logo" href="#top" data-site="handle">WRATH</a>
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#explore">Exploration</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="hero-kicker">PLAYER 1 · READY</p>
+      <h1 class="hero-name glitch" data-site="name">Navneet Singh</h1>
+      <p class="hero-tagline" data-site="tagline"></p>
+      <p class="hero-intro" data-site="intro"></p>
+      <div class="hero-stats" id="stats"></div>
+      <a class="btn btn-start" href="#games"><span class="blink">▶</span> PRESS START</a>
+    </section>
+
+    <section id="games" class="section">
+      <h2 class="section-title"><span>01</span> Games</h2>
+      <p class="section-sub">Pick a cartridge.</p>
+      <div class="games-grid" id="games-grid"></div>
+    </section>
+
+    <section id="explore" class="section">
+      <h2 class="section-title"><span>02</span> Exploration</h2>
+      <p class="section-sub">Design pitches, experiments and art.</p>
+      <div class="explore-grid" id="explore-grid"></div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2 class="section-title"><span>03</span> Contact</h2>
+      <p class="section-sub">Want to play, collab or hire? Insert coin.</p>
+      <div class="contact-links" id="contact-links"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <span data-site="name"></span> · Made with pixels &amp; chai</p>
+  </footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
