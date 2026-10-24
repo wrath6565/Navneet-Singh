@@ -35,7 +35,7 @@ const onScroll = () => nav.classList.toggle("scrolled", scrollY > 40);
 addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// ---------- Hero: name reveal, showreel, embers ----------
+// ---------- Hero: name reveal, showreel, tractor ----------
 document.querySelectorAll("[data-split]").forEach((el) => {
   const text = el.textContent;
   el.setAttribute("aria-label", text);
@@ -93,40 +93,147 @@ if (heroMedia) {
   modal.addEventListener("click", (e) => e.target === modal && close());
   addEventListener("keydown", (e) => e.key === "Escape" && close());
 
-  // Drifting embers
-  const cv = document.getElementById("embers");
+  // Drivable tractor: it follows your cursor and the trolley swings behind on a delay,
+  // the same mechanic as Horn OK Please
+  const cv = document.getElementById("drive");
   const ctx = cv.getContext("2d");
-  let w, h, parts;
-  const resize = () => {
-    w = cv.width = cv.offsetWidth * devicePixelRatio;
-    h = cv.height = cv.offsetHeight * devicePixelRatio;
-    parts = Array.from({ length: Math.min(50, Math.round(w / 30)) }, () => spawn(true));
+  const COLORS = { k: "#17151f", g: "#43a047", G: "#2e7d32", y: "#f2b52a", r: "#d4507a", s: "#5b3a24", m: "#9aa0a6", T: "#0f6d5c", t: "#19a88e" };
+  const TRACTOR = [
+    "....yyy....", "...GgggG...", "kk.GgygG.kk", "kk.GgggG.kk", "kk.GgygG.kk", "...GgggG...",
+    "...GgggG...", "..GGgggGG..", "kkkGsssGkkk", "kkkGsssGkkk", "kkkGgggGkkk", "kkkGgrgGkkk",
+    "kkkGgggGkkk", "kkk.GGG.kkk", ".....m.....", ".....m.....",
+  ];
+  const TROLLEY = [
+    "......m......", "......m......", ".TTTTTTTTTTT.", ".TtttttttttT.", ".TtyttrttytT.", ".TtttttttttT.",
+    "kTtttttttttTk", "kTtttttttttTk", "kTtttttttttTk", ".TtttttttttT.", ".TtyttrttytT.", ".TtttttttttT.",
+    ".TTTTTTTTTTT.",
+  ];
+  let W, H, P, dpr;
+  const car = { x: 0, y: 0, vx: 0, vy: 0, a: -Math.PI / 2 };
+  const trolley = { x: 0, y: 0 };
+  const dust = [];
+  let target = null, lastMove = 0, t0 = performance.now();
+
+  const sprite = (rows, x, y, angle) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle + Math.PI / 2);
+    const ox = (-rows[0].length * P) / 2, oy = (-rows.length * P) / 2;
+    // soft shadow, then a dark outline so it reads on any background
+    ctx.fillStyle = "rgba(0,0,0,.35)";
+    ctx.fillRect(ox + P, oy + P * 1.5, rows[0].length * P, rows.length * P);
+    ctx.fillStyle = "#0d0b1f";
+    rows.forEach((row, j) => [...row].forEach((c, i) => {
+      if (c !== ".") ctx.fillRect(ox + i * P - P / 2, oy + j * P - P / 2, P * 2, P * 2);
+    }));
+    rows.forEach((row, j) => [...row].forEach((c, i) => {
+      if (c === ".") return;
+      ctx.fillStyle = COLORS[c];
+      ctx.fillRect(Math.round(ox + i * P), Math.round(oy + j * P), Math.ceil(P), Math.ceil(P));
+    }));
+    ctx.restore();
   };
-  const spawn = (anywhere) => ({
-    x: Math.random() * w,
-    y: anywhere ? Math.random() * h : h + 10,
-    r: (Math.random() * 1.8 + 0.6) * devicePixelRatio,
-    vy: (Math.random() * 0.5 + 0.2) * devicePixelRatio,
-    vx: (Math.random() - 0.5) * 0.3 * devicePixelRatio,
-    a: Math.random() * 0.6 + 0.2,
-    t: Math.random() * Math.PI * 2,
+
+  const resize = () => {
+    dpr = devicePixelRatio || 1;
+    W = cv.width = cv.offsetWidth * dpr;
+    H = cv.height = cv.offsetHeight * dpr;
+    P = (innerWidth < 700 ? 4 : 6) * dpr;
+    if (!car.x) { car.x = W * 0.75; car.y = H * 0.6; trolley.x = car.x; trolley.y = car.y + 15 * P; }
+  };
+
+  const hero = document.querySelector(".hero");
+  const hint = document.getElementById("drive-hint");
+  hero.addEventListener("pointermove", (e) => {
+    const r = cv.getBoundingClientRect();
+    target = { x: (e.clientX - r.left) * dpr, y: (e.clientY - r.top) * dpr };
+    lastMove = performance.now();
+    hint.classList.add("gone");
   });
-  const tick = () => {
-    ctx.clearRect(0, 0, w, h);
-    for (const p of parts) {
-      p.t += 0.02; p.y -= p.vy; p.x += p.vx + Math.sin(p.t) * 0.3;
-      if (p.y < -10) Object.assign(p, spawn(false));
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-      g.addColorStop(0, `rgba(255, 205, 90, ${p.a * 0.8})`);
-      g.addColorStop(1, "rgba(242, 181, 42, 0)");
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2); ctx.fill();
+  hero.addEventListener("pointerleave", () => (target = null));
+
+  const step = (now) => {
+    // With no cursor, it cruises a lazy loop on its own
+    let tx, ty;
+    if (target && now - lastMove < 4000) ({ x: tx, y: ty } = target);
+    else {
+      const t = (now - t0) / 1000;
+      tx = W * (0.72 + 0.18 * Math.sin(t * 0.5));
+      ty = H * (0.55 + 0.22 * Math.sin(t * 0.8));
     }
-    requestAnimationFrame(tick);
+    const dx = tx - car.x, dy = ty - car.y;
+    car.vx = (car.vx + dx * 0.004) * 0.9;
+    car.vy = (car.vy + dy * 0.004) * 0.9;
+    car.x += car.vx; car.y += car.vy;
+    const speed = Math.hypot(car.vx, car.vy);
+    if (speed > 0.4 * dpr) {
+      let want = Math.atan2(car.vy, car.vx), diff = want - car.a;
+      diff = Math.atan2(Math.sin(diff), Math.cos(diff));
+      car.a += diff * 0.12;
+    }
+    // Hitch at the tractor's rear; trolley is dragged on a fixed-length bar, so it swings late
+    const hx = car.x - Math.cos(car.a) * 8 * P, hy = car.y - Math.sin(car.a) * 8 * P;
+    const L = 7.5 * P;
+    let ddx = trolley.x - hx, ddy = trolley.y - hy, d = Math.hypot(ddx, ddy) || 1;
+    trolley.x = hx + (ddx / d) * L; trolley.y = hy + (ddy / d) * L;
+    const ta = Math.atan2(hy - trolley.y, hx - trolley.x);
+
+    if (speed > 1 * dpr && Math.random() < 0.6) {
+      dust.push({ x: trolley.x - Math.cos(ta) * 7 * P + (Math.random() - 0.5) * 8 * P, y: trolley.y - Math.sin(ta) * 7 * P + (Math.random() - 0.5) * 8 * P, life: 1 });
+    }
+    ctx.clearRect(0, 0, W, H);
+    for (let i = dust.length - 1; i >= 0; i--) {
+      const p = dust[i];
+      p.life -= 0.025;
+      if (p.life <= 0) { dust.splice(i, 1); continue; }
+      ctx.fillStyle = `rgba(242, 181, 42, ${p.life * 0.35})`;
+      const sz = P * (1 + (1 - p.life) * 1.5);
+      ctx.fillRect(p.x, p.y, sz, sz);
+    }
+    sprite(TROLLEY, trolley.x, trolley.y, ta);
+    sprite(TRACTOR, car.x, car.y, car.a);
+    requestAnimationFrame(step);
   };
   resize();
   addEventListener("resize", resize);
-  if (!reduceMotion) tick();
+  if (!reduceMotion) requestAnimationFrame(step);
+  else { hint.hidden = true; sprite(TROLLEY, trolley.x, trolley.y, -Math.PI / 2); sprite(TRACTOR, car.x, car.y, -Math.PI / 2); }
+}
+
+// ---------- Why 65? ----------
+const whyBtn = document.getElementById("why65-btn");
+if (whyBtn) {
+  const m = document.getElementById("why65");
+  document.getElementById("why65-body").innerHTML = SITE.why65
+    .map((line, i) => `<p class="why-line" style="--i:${i}">${esc(line)}</p>`).join("");
+  whyBtn.addEventListener("click", () => (m.hidden = false));
+  const close = () => (m.hidden = true);
+  m.querySelector(".modal-close").addEventListener("click", close);
+  m.addEventListener("click", (e) => e.target === m && close());
+  addEventListener("keydown", (e) => e.key === "Escape" && close());
+}
+
+// ---------- Player profile ----------
+const profile = document.getElementById("profile");
+if (profile) {
+  const p = SITE.profile;
+  profile.innerHTML = `
+    <div class="profile-head">
+      <div class="avatar" aria-hidden="true">N</div>
+      <div>
+        <p class="profile-name">${esc(SITE.handle)} <span>Lv. 65</span></p>
+        <p class="profile-class">${esc(p.class)} · ${esc(p.origin)}</p>
+      </div>
+    </div>
+    <ul class="bars">${p.stats.map((st, i) => `
+      <li style="--v:${st.value * 10}%; --i:${i}" class="${st.value <= 2 ? "low" : ""}">
+        <span class="bar-name">${esc(st.name)}</span>
+        <span class="bar-label">${esc(st.label)}${st.note ? ` <em>${esc(st.note)}</em>` : ""}</span>
+        <span class="bar"><span></span></span>
+      </li>`).join("")}
+    </ul>
+    <p class="traits-title">Passive traits</p>
+    <ul class="traits">${p.traits.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
 }
 
 // ---------- Home sections ----------
@@ -280,6 +387,17 @@ const io = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 requestAnimationFrame(() => document.body.classList.add("loaded"));
+
+// The page's ambient glow takes the colour of whichever game is in view
+const ambient = new IntersectionObserver(
+  (entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const a = [...e.target.classList].find((c) => c.startsWith("accent-"));
+    document.body.style.setProperty("--ambient", `var(--${a ? a.slice(7) : "marigold"})`);
+  }),
+  { threshold: 0.6 }
+);
+document.querySelectorAll(".game-card").forEach((el) => ambient.observe(el));
 
 // Cards gently tilt toward the cursor and a light follows it
 if (!reduceMotion && matchMedia("(hover: hover)").matches) {

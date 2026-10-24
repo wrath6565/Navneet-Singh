@@ -13,11 +13,40 @@
 const SITE = {
   name: "Navneet Singh",
   handle: "Wrath65",
-  tagline: "Crafting worlds rooted in India, shaped by the games that shaped me.",
+  role: "Game Designer",
+  tagline: "Game designer and problem solver. I take Indian streets, myths and what-ifs, and turn them into games with a straight face that cracks.",
   intro:
-    "I make games that mix arcade energy with Indian settings, myths and humour, " +
-    "from pixel-art tractors swinging through traffic to steampunk Calcutta in 1970. " +
-    "This is where I keep everything I'm building.",
+    "I'm a designer, not a coder. I know how games get built, and my job is to find the fun, " +
+    "spot what's broken, and solve it. My worlds come from home: a tractor on the highway, " +
+    "a gym crew in 2125, a Calcutta that never got its freedom.",
+  /*
+   * WHY 65: the story behind the handle (opens when someone clicks "Why 65?")
+   */
+  why65: [
+    "It started with Meliodas from The Seven Deadly Sins. I went by Meliodas-kun, but my PUBG Mobile squad could never find me.",
+    "So I took his sin instead: Wrath. It was taken, so it needed a number.",
+    "69 was the obvious pick, but nobody asks about 69. Use 65 and everyone asks, \"why 65?\"",
+    "That's why.",
+  ],
+  /*
+   * PLAYER PROFILE: an RPG-style character sheet. value is out of 10.
+   */
+  profile: {
+    class: "Designer · Problem Solver",
+    origin: "India",
+    stats: [
+      { name: "STR", label: "Gym regular", value: 8 },
+      { name: "CRAFT", label: "Cooks his own buffs", value: 7 },
+      { name: "LORE", label: "Anime watched", value: 9 },
+      { name: "PARTY", label: "Knows someone for everything", value: 9 },
+      { name: "SLEEP", label: "Sleep schedule", value: 1, note: "status: not found" },
+    ],
+    traits: [
+      "Talks a lot once you're in the party",
+      "Asks for help, always gets it",
+      "Plays Elden Ring, Sekiro and The Finals to relax",
+    ],
+  },
   /*
    * SHOWREEL: plays at the very top of the site.
    * Option A: put a file in assets/video/ and set file, e.g. "assets/video/showreel.mp4"
@@ -40,9 +69,9 @@ const SITE = {
   },
   // Short facts shown on the home screen
   stats: [
-    { label: "Games", value: "4" },
-    { label: "Engine", value: "Unity" },
-    { label: "Based in", value: "India" },
+    { label: "Games made", value: "4" },
+    { label: "Bosses named Pappu", value: "1" },
+    { label: "Problems solved", value: "∞" },
   ],
   contact: {
     email: "navneetsinghds@gmail.com",
