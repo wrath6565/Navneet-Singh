@@ -144,14 +144,6 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-name .ch:hover { color: var(--marigold); transform: translateY(-6px); transition-delay: 0s; transition-duration: .25s; }
 .aka { margin: -8px 0 20px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .aka b { color: var(--text); }
-.why65 {
-  font-family: var(--pixel); font-size: 11px; color: var(--bg); background: var(--rose); border: 0; cursor: pointer;
-  padding: 6px 10px; border-radius: 4px; box-shadow: 3px 3px 0 var(--text);
-  transition: transform .25s var(--bounce), box-shadow .25s;
-  animation: wiggle 5s ease-in-out 3s infinite;
-}
-.why65:hover { transform: translate(-2px, -2px) rotate(-3deg); box-shadow: 5px 5px 0 var(--text); animation: none; }
-@keyframes wiggle { 0%, 90%, 100% { transform: rotate(0); } 92% { transform: rotate(-6deg); } 94% { transform: rotate(5deg); } 96% { transform: rotate(-3deg); } }
 .hero-tagline { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: var(--muted); margin: 0 0 36px; max-width: 580px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
@@ -307,18 +299,6 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 @keyframes fade { from { opacity: 0; } }
 @keyframes pop { from { opacity: 0; transform: scale(.94); } }
 
-/* Why 65 card */
-.why65-card {
-  position: relative; width: min(520px, 100%); background: var(--panel); border: 2px solid var(--rose); border-radius: 18px;
-  padding: 32px 30px 26px; box-shadow: 10px 10px 0 var(--rose); animation: pop .45s var(--bounce);
-}
-.why65-card .modal-close { top: 6px; right: 14px; font-size: 32px; }
-.why65-card .eyebrow { --accent: var(--rose); }
-.why65-card h3 { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: -.03em; margin: 0 0 14px; }
-.why-line { margin: 0 0 12px; color: var(--muted); opacity: 0; transform: translateY(8px); animation: lineIn .5s var(--ease) forwards; animation-delay: calc(200ms + var(--i) * 450ms); }
-.why-line:last-child { font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--marigold); margin: 18px 0 0; }
-@keyframes lineIn { to { opacity: 1; transform: none; } }
-
 /* Player profile */
 .profile {
   background: var(--panel); border: 2px solid var(--line-strong); border-radius: 18px; padding: 24px;
@@ -402,7 +382,7 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal, .hero-name .ch, .why-line { opacity: 1 !important; transform: none !important; }
+  .reveal, .hero-name .ch { opacity: 1 !important; transform: none !important; }
   .profile .bar span { width: var(--v); }
   .slide.on { transform: none; }
   html { scroll-behavior: auto; }

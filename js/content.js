@@ -14,37 +14,27 @@ const SITE = {
   name: "Navneet Singh",
   handle: "Wrath65",
   role: "Game Designer",
-  tagline: "Game designer and problem solver. I take Indian streets, myths and what-ifs, and turn them into games with a straight face that cracks.",
+  tagline: "Game designer and problem solver, building worlds rooted in India.",
   intro:
-    "I'm a designer, not a coder. I know how games get built, and my job is to find the fun, " +
-    "spot what's broken, and solve it. My worlds come from home: a tractor on the highway, " +
-    "a gym crew in 2125, a Calcutta that never got its freedom.",
-  /*
-   * WHY 65: the story behind the handle (opens when someone clicks "Why 65?")
-   */
-  why65: [
-    "It started with Meliodas from The Seven Deadly Sins. I went by Meliodas-kun, but my PUBG Mobile squad could never find me.",
-    "So I took his sin instead: Wrath. It was taken, so it needed a number.",
-    "69 was the obvious pick, but nobody asks about 69. Use 65 and everyone asks, \"why 65?\"",
-    "That's why.",
-  ],
+    "I design games that start close to home: Indian roads, Indian myths, and a lot of what-ifs. " +
+    "I know how games get built, and I focus on the design side: finding the fun and solving the problems that get in its way.",
   /*
    * PLAYER PROFILE: an RPG-style character sheet. value is out of 10.
    */
   profile: {
-    class: "Designer · Problem Solver",
+    class: "Game Designer",
     origin: "India",
     stats: [
-      { name: "STR", label: "Gym regular", value: 8 },
-      { name: "CRAFT", label: "Cooks his own buffs", value: 7 },
-      { name: "LORE", label: "Anime watched", value: 9 },
-      { name: "PARTY", label: "Knows someone for everything", value: 9 },
-      { name: "SLEEP", label: "Sleep schedule", value: 1, note: "status: not found" },
+      { name: "STR", label: "Gym, most days", value: 8 },
+      { name: "CRAFT", label: "Cooking", value: 7 },
+      { name: "LORE", label: "Anime", value: 9 },
+      { name: "PARTY", label: "Network", value: 9 },
+      { name: "SLEEP", label: "Sleep schedule", value: 1, note: "none" },
     ],
     traits: [
-      "Talks a lot once you're in the party",
-      "Asks for help, always gets it",
-      "Plays Elden Ring, Sekiro and The Finals to relax",
+      "Quiet at first, talkative with friends",
+      "Has a contact for every problem",
+      "Unwinds with Elden Ring, Sekiro and The Finals",
     ],
   },
   /*
@@ -69,9 +59,9 @@ const SITE = {
   },
   // Short facts shown on the home screen
   stats: [
-    { label: "Games made", value: "4" },
-    { label: "Bosses named Pappu", value: "1" },
-    { label: "Problems solved", value: "∞" },
+    { label: "Games", value: "4" },
+    { label: "Genres", value: "4" },
+    { label: "Shipped", value: "1" },
   ],
   contact: {
     email: "navneetsinghds@gmail.com",

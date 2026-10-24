@@ -200,19 +200,6 @@ if (heroMedia) {
   else { hint.hidden = true; sprite(TROLLEY, trolley.x, trolley.y, -Math.PI / 2); sprite(TRACTOR, car.x, car.y, -Math.PI / 2); }
 }
 
-// ---------- Why 65? ----------
-const whyBtn = document.getElementById("why65-btn");
-if (whyBtn) {
-  const m = document.getElementById("why65");
-  document.getElementById("why65-body").innerHTML = SITE.why65
-    .map((line, i) => `<p class="why-line" style="--i:${i}">${esc(line)}</p>`).join("");
-  whyBtn.addEventListener("click", () => (m.hidden = false));
-  const close = () => (m.hidden = true);
-  m.querySelector(".modal-close").addEventListener("click", close);
-  m.addEventListener("click", (e) => e.target === m && close());
-  addEventListener("keydown", (e) => e.key === "Escape" && close());
-}
-
 // ---------- Player profile ----------
 const profile = document.getElementById("profile");
 if (profile) {
