@@ -108,22 +108,7 @@ if (heroMedia) {
     "kTtttttttttTk", "kTtttttttttTk", "kTtttttttttTk", ".TtttttttttT.", ".TtyttrttytT.", ".TtttttttttT.",
     ".TTTTTTTTTTT.",
   ];
-  let W, H, P, dpr, SC;
-  // The real game sprites; the pixel maps above are the fallback while they load
-  const IMG = { tractor: new Image(), trailer: new Image() };
-  IMG.tractor.src = "assets/sprites/tractor.png";
-  IMG.trailer.src = "assets/sprites/trailer.png";
-  const ready = (im) => im.complete && im.naturalWidth > 0;
-  const drawImg = (im, x, y, angle) => {
-    const w = im.naturalWidth * SC, h = im.naturalHeight * SC;
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(angle + Math.PI / 2);
-    ctx.imageSmoothingEnabled = false;
-    ctx.shadowColor = "rgba(0,0,0,.45)"; ctx.shadowOffsetX = 4 * dpr; ctx.shadowOffsetY = 6 * dpr;
-    ctx.drawImage(im, -w / 2, -h / 2, w, h);
-    ctx.restore();
-  };
+  let W, H, P, dpr;
   const car = { x: 0, y: 0, vx: 0, vy: 0, a: -Math.PI / 2 };
   const trolley = { x: 0, y: 0 };
   const dust = [];
@@ -154,7 +139,6 @@ if (heroMedia) {
     W = cv.width = cv.offsetWidth * dpr;
     H = cv.height = cv.offsetHeight * dpr;
     P = (innerWidth < 700 ? 4 : 6) * dpr;
-    SC = (innerWidth < 700 ? 0.8 : 1.15) * dpr;
     if (!car.x) { car.x = W * 0.75; car.y = H * 0.6; trolley.x = car.x; trolley.y = car.y + 15 * P; }
   };
 
@@ -188,16 +172,14 @@ if (heroMedia) {
       car.a += diff * 0.12;
     }
     // Hitch at the tractor's rear; trolley is dragged on a fixed-length bar, so it swings late
-    const useImg = ready(IMG.tractor) && ready(IMG.trailer);
-    const rear = useImg ? 40 * SC : 8 * P;
-    const hx = car.x - Math.cos(car.a) * rear, hy = car.y - Math.sin(car.a) * rear;
-    const L = useImg ? 40 * SC : 7.5 * P;
+    const hx = car.x - Math.cos(car.a) * 8 * P, hy = car.y - Math.sin(car.a) * 8 * P;
+    const L = 7.5 * P;
     let ddx = trolley.x - hx, ddy = trolley.y - hy, d = Math.hypot(ddx, ddy) || 1;
     trolley.x = hx + (ddx / d) * L; trolley.y = hy + (ddy / d) * L;
     const ta = Math.atan2(hy - trolley.y, hx - trolley.x);
 
     if (speed > 1 * dpr && Math.random() < 0.6) {
-      dust.push({ x: trolley.x - Math.cos(ta) * 6 * P + (Math.random() - 0.5) * 8 * P, y: trolley.y - Math.sin(ta) * 7 * P + (Math.random() - 0.5) * 8 * P, life: 1 });
+      dust.push({ x: trolley.x - Math.cos(ta) * 7 * P + (Math.random() - 0.5) * 8 * P, y: trolley.y - Math.sin(ta) * 7 * P + (Math.random() - 0.5) * 8 * P, life: 1 });
     }
     ctx.clearRect(0, 0, W, H);
     for (let i = dust.length - 1; i >= 0; i--) {
@@ -208,8 +190,8 @@ if (heroMedia) {
       const sz = P * (1 + (1 - p.life) * 1.5);
       ctx.fillRect(p.x, p.y, sz, sz);
     }
-    if (useImg) { drawImg(IMG.trailer, trolley.x, trolley.y, ta); drawImg(IMG.tractor, car.x, car.y, car.a); }
-    else { sprite(TROLLEY, trolley.x, trolley.y, ta); sprite(TRACTOR, car.x, car.y, car.a); }
+    sprite(TROLLEY, trolley.x, trolley.y, ta);
+    sprite(TRACTOR, car.x, car.y, car.a);
     requestAnimationFrame(step);
   };
   resize();
