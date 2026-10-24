@@ -1,0 +1,126 @@
+/* ===== Comic print layer (Spider-Verse inspired) =====
+ * Halftone dots, misregistered colour plates, ink outlines, and animation "on twos".
+ * Delete this file's <link> in the HTML to switch the whole look off.
+ */
+:root {
+  --ink: #0b0716;
+  --plate-c: #00e5ff;   /* cyan plate */
+  --plate-m: #ff2e88;   /* magenta plate */
+  --halftone: radial-gradient(circle at center, rgba(255,255,255,.14) 1.2px, transparent 1.6px) 0 0 / 7px 7px;
+  --halftone-dark: radial-gradient(circle at center, rgba(0,0,0,.45) 1.4px, transparent 1.8px) 0 0 / 6px 6px;
+}
+
+/* Print texture instead of film grain: faint dots across the whole page */
+.grain { background-image: none; inset: 0; animation: none; opacity: 1; background: var(--halftone); mix-blend-mode: overlay; opacity: .5; }
+
+/* ---------- Misregistered type ---------- */
+.hero-name, .section-title, .game-title {
+  text-shadow: -3px 0 0 var(--plate-c), 3px 2px 0 var(--plate-m);
+}
+.hero-name { text-shadow: -5px 0 0 var(--plate-c), 5px 3px 0 var(--plate-m); }
+.hero-name .ch { animation: misprint 3.2s steps(1) infinite; animation-delay: calc(var(--i) * -0.37s); }
+@keyframes misprint {
+  0%, 86%, 100% { translate: 0 0; }
+  88% { translate: -2px 1px; }
+  92% { translate: 2px -1px; }
+}
+.section-head.in .section-title { animation: jolt .5s steps(4) 1; }
+@keyframes jolt {
+  0% { transform: translate(-8px, 2px) skewX(-6deg); }
+  50% { transform: translate(4px, -1px) skewX(3deg); }
+  100% { transform: none; }
+}
+
+/* Halftone shading on hero and art */
+.hero-shade::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--halftone-dark);
+  -webkit-mask: linear-gradient(90deg, #000 0%, transparent 70%);
+          mask: linear-gradient(90deg, #000 0%, transparent 70%);
+}
+.hero-media::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(255, 46, 136, .5) 1.5px, transparent 2px) 0 0 / 9px 9px;
+  -webkit-mask: radial-gradient(60% 70% at 100% 100%, #000, transparent 70%);
+          mask: radial-gradient(60% 70% at 100% 100%, #000, transparent 70%);
+  mix-blend-mode: screen; opacity: .6;
+}
+/* Colour-plate split on each slide change */
+.slide.on { animation: kenburns 7s linear forwards, platesplit .6s steps(3) 1; }
+@keyframes platesplit {
+  0% { filter: drop-shadow(-12px 0 0 rgba(0,229,255,.8)) drop-shadow(12px 0 0 rgba(255,46,136,.8)); }
+  100% { filter: none; }
+}
+
+/* ---------- Caption boxes ---------- */
+.eyebrow {
+  display: inline-flex; background: var(--marigold); color: var(--ink);
+  padding: 6px 12px 6px 10px; border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-1.5deg);
+}
+.eyebrow::before { background: var(--ink); }
+.section-head .eyebrow { margin-bottom: 22px; }
+.tag { border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); transform: rotate(-2deg); }
+
+/* ---------- Ink outlines + offset shadows ---------- */
+.game-card, .explore-card, .doc-card, .shot, .game-hero-art, .contact-links {
+  border-color: var(--ink);
+}
+.game-card { border-width: 3px; box-shadow: 8px 8px 0 var(--ink); }
+.game-card:hover {
+  box-shadow: 8px 8px 0 var(--ink), 14px 14px 0 var(--accent), 0 30px 70px -20px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.game-card .game-art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--halftone-dark); opacity: 0; transition: opacity .3s steps(2);
+  -webkit-mask: linear-gradient(0deg, #000, transparent 60%);
+          mask: linear-gradient(0deg, #000, transparent 60%);
+}
+.game-card:hover .game-art::after { opacity: 1; }
+/* hover jumps on twos: choppy, like stepped animation */
+.game-card:hover h3 { animation: twos .36s steps(3) 1; text-shadow: -2px 0 0 var(--plate-c), 2px 1px 0 var(--plate-m); }
+@keyframes twos { 0% { transform: translate(-4px, 0); } 33% { transform: translate(3px, -2px); } 66% { transform: translate(-1px, 1px); } 100% { transform: none; } }
+
+.explore-card { border-width: 3px; box-shadow: 6px 6px 0 var(--ink); }
+.explore-card:hover { box-shadow: 6px 6px 0 var(--ink), 11px 11px 0 var(--teal); }
+.explore-art { border: 2px solid var(--ink); }
+.game-hero-art { border-width: 3px; box-shadow: 10px 10px 0 var(--ink), 16px 16px 0 var(--accent); }
+.shot { border-width: 3px; box-shadow: 5px 5px 0 var(--ink); }
+.shot:hover { box-shadow: 5px 5px 0 var(--ink), 9px 9px 0 var(--accent); }
+.doc-card { border-width: 3px; box-shadow: 5px 5px 0 var(--ink); }
+
+/* Buttons: inked, chunky */
+.btn { border-radius: 10px; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.btn:hover { transform: translate(-2px, -2px) rotate(-1deg); box-shadow: 6px 6px 0 var(--ink), 9px 9px 0 var(--plate-m); border-color: var(--ink); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.btn-primary { box-shadow: 4px 4px 0 var(--ink); }
+
+/* Stats as comic numerals */
+.stat b { text-shadow: 3px 3px 0 var(--ink); -webkit-text-stroke: 1.5px var(--ink); font-size: 56px; }
+
+/* Rule as a torn ink stroke */
+.rule { height: 6px; border-radius: 0; transform: skewX(-20deg); box-shadow: 3px 3px 0 var(--ink); }
+
+/* Contact rows hover like a panel pop */
+.contact-link:hover .contact-val { text-shadow: -2px 0 0 var(--plate-c), 2px 1px 0 var(--plate-m); }
+
+/* Sound-effect burst behind section titles */
+.section-head { position: relative; }
+.section-head::before {
+  content: ""; position: absolute; left: -40px; top: -30px; width: 220px; height: 220px; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--plate-m) 55%, transparent) 2px, transparent 2.6px) 0 0 / 10px 10px;
+  -webkit-mask: radial-gradient(circle, #000 20%, transparent 70%);
+          mask: radial-gradient(circle, #000 20%, transparent 70%);
+  opacity: .5;
+}
+#games .section-head::before { background-image: radial-gradient(circle at center, color-mix(in srgb, var(--marigold) 60%, transparent) 2px, transparent 2.6px); }
+#explore .section-head::before { background-image: radial-gradient(circle at center, color-mix(in srgb, var(--plate-c) 55%, transparent) 2px, transparent 2.6px); }
+
+/* Modal pops in like a panel slam */
+.modal-body { animation: slam .35s steps(3) 1; }
+@keyframes slam { 0% { transform: scale(1.12) rotate(-2deg); } 66% { transform: scale(.98) rotate(1deg); } 100% { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name .ch, .slide.on, .section-head.in .section-title, .game-card:hover h3 { animation: none !important; }
+}
