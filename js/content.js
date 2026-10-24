@@ -15,9 +15,7 @@ const SITE = {
   handle: "Wrath65",
   role: "Game Designer",
   tagline: "Game designer and problem solver, building worlds rooted in India.",
-  intro:
-    "I design games that start close to home: Indian roads, Indian myths, and a lot of what-ifs. " +
-    "I know how games get built, and I focus on the design side: finding the fun and solving the problems that get in its way.",
+  intro: "I design games from Indian roads, myths and what-ifs.",
   /*
    * PLAYER PROFILE: an RPG-style character sheet. value is out of 10.
    */
