@@ -36,12 +36,6 @@ const SITE = {
       "assets/images/beatemup-street.webp",
     ],
   },
-  // Short facts shown on the home screen
-  stats: [
-    { label: "Games", value: "4" },
-    { label: "Genres", value: "4" },
-    { label: "Shipped", value: "1" },
-  ],
   contact: {
     email: "navneetsinghds@gmail.com",
     itch: "https://wrath65.itch.io/",

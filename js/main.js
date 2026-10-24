@@ -201,13 +201,6 @@ if (heroMedia) {
 }
 
 // ---------- Home sections ----------
-const stats = document.getElementById("stats");
-if (stats) {
-  stats.innerHTML = SITE.stats
-    .map((s) => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`)
-    .join("");
-}
-
 const gamesGrid = document.getElementById("games-grid");
 if (gamesGrid) {
   gamesGrid.innerHTML = GAMES.map(

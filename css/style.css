@@ -133,7 +133,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .eyebrow::before { content: ""; width: 10px; height: 10px; background: currentColor; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 .hero-name {
   font-family: var(--display); font-weight: 800;
-  font-size: clamp(52px, 10vw, 136px); line-height: .92; letter-spacing: -.035em; margin: 0 0 22px;
+  font-size: clamp(52px, 10vw, 136px); line-height: .92; letter-spacing: -.015em; margin: 0 0 22px;
 }
 .hero-name .ch {
   display: inline-block; opacity: 0; transform: translateY(60%) rotate(6deg);
@@ -190,7 +190,7 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 /* About */
 .about { padding-top: 72px; padding-bottom: 24px; }
 .about-grid { display: block; }
-.about-intro { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.25; letter-spacing: -.015em; margin: 0 0 40px; max-width: 920px; }
+.about-intro { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.25; letter-spacing: -.015em; margin: 0; max-width: 920px; }
 .stats { display: flex; gap: clamp(28px, 5vw, 72px); flex-wrap: wrap; }
 .stat b { display: block; font-family: var(--display); font-size: 44px; font-weight: 800; color: var(--marigold); line-height: 1; margin-bottom: 6px; }
 .stat:nth-child(2) b { color: var(--teal); }
