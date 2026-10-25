@@ -278,7 +278,9 @@ const GAMES = [
       tension:   [1, 2.5, 3.5, 3, 6, 7.5, 5.5, 6, 7.5, 6.5, 8.5, 8, 9, 9, 9.5],
       note: "Intensity is the road speed, rising from 1× to 3× over five minutes. Novelty peaks at swerving traffic, lane changes and new regions. Tension is the design target, to be checked in playtests.",
     },
-    cover: "",         // portrait games use their screenshots as the cover
+    poster: "assets/images/horn-ok-please-poster.webp",
+    cover: "assets/images/horn-ok-please-poster.webp",
+    coverHasTitle: true,
     screenshots: [
       "assets/images/horn-menu.webp",
       "assets/images/horn-beach.webp",
