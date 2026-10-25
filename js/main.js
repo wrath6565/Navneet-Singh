@@ -208,15 +208,8 @@ if (gamesGrid) {
     <a class="game-card reveal tilt accent-${esc(g.accent)}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
       <div class="game-art${g.portrait ? " is-portrait" : ""}">${g.portrait && g.screenshots.length ? art(g.screenshots[1] || g.screenshots[0], g.title) : cover(g)}</div>
       <div class="game-body">
-        <div class="game-top">
-          <span class="game-num">${String(i + 1).padStart(2, "0")}</span>
-          <span class="tag">${esc(g.status)}</span>
-        </div>
         <h3>${esc(g.title)}</h3>
-        ${g.subtitle ? `<p class="game-subtitle">${esc(g.subtitle)}</p>` : ""}
-        <p class="game-meta">${esc(g.genre)} · ${esc(g.platform)}</p>
-        <p class="game-pitch">${esc(g.pitch)}</p>
-        <span class="more">Discover <span class="arrow">→</span></span>
+        <p class="game-meta">${esc(g.genre)} · ${g.team ? "Team dev" : "Solo dev"}</p>
       </div>
     </a>`
   ).join("");

@@ -192,15 +192,11 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 
 /* ===== Game cards ===== */
 /* Layout: wide PC card on top; mobile (portrait) card on the left; two PC cards stacked on the right */
-.games-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); grid-template-areas: "a a" "d b" "d c"; gap: 28px; }
-.games-grid > :nth-child(1) { grid-area: a; flex-direction: row; }
-.games-grid > :nth-child(1) .game-art { flex: 1.5; aspect-ratio: auto; min-height: 340px; }
-.games-grid > :nth-child(1) .game-body { flex: 1; justify-content: center; }
+.games-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); grid-template-areas: "a a" "d b" "d c"; grid-template-rows: 420px 300px 300px; gap: 28px; }
+.games-grid > :nth-child(1) { grid-area: a; }
 .games-grid > :nth-child(2) { grid-area: b; }
 .games-grid > :nth-child(3) { grid-area: c; }
 .games-grid > :nth-child(4) { grid-area: d; }
-.games-grid > :nth-child(4) .game-art { flex: 1; aspect-ratio: auto; min-height: 380px; }
-.games-grid > :nth-child(4) .game-body { flex: 0 0 auto; }
 .game-art.is-portrait img { image-rendering: pixelated; object-position: center 70%; }
 .game-card {
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
@@ -214,16 +210,19 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 }
 .game-card:hover { border-color: var(--accent); box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--accent) 70%, transparent); }
 .game-card:hover::after { opacity: 1; }
-.game-art { aspect-ratio: 16 / 10; overflow: hidden; position: relative; }
+.game-art { position: absolute; inset: 0; overflow: hidden; }
+.game-art::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(11,7,22,.92) 0%, rgba(11,7,22,.55) 28%, transparent 55%); }
+.game-card .placeholder span { display: none; }
 .game-art > img, .game-art > .placeholder { transition: transform 1.2s var(--ease); }
 .game-card:hover .game-art > img, .game-card:hover .game-art > .placeholder { transform: scale(1.06); }
-.game-body { padding: 24px 26px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.game-body { position: relative; margin-top: auto; padding: 24px 26px; display: flex; flex-direction: column; gap: 4px; }
 .game-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .game-num { font-family: var(--pixel); font-size: 13px; color: var(--accent); }
-.game-body h3 { font-family: var(--display); font-weight: 800; font-size: 32px; line-height: 1.05; letter-spacing: -.02em; margin: 6px 0 0; }
+.game-body h3 { font-family: var(--display); font-weight: 800; font-size: 32px; line-height: 1.05; letter-spacing: -.02em; margin: 0; color: #fff; }
+.games-grid > :nth-child(1) .game-body h3 { font-size: 44px; }
 .game-subtitle { font-family: var(--pixel); font-size: 12px; color: var(--accent); margin: 0; }
 .game-subtitle.big { font-size: 15px; margin: -6px 0 16px; }
-.game-meta { font-weight: 600; font-size: 13px; color: var(--muted); margin: 0; }
+.game-meta { font-weight: 600; font-size: 14px; color: rgba(255,255,255,.78); margin: 0; }
 .game-pitch { color: var(--muted); margin: 0; flex: 1; }
 .more { margin-top: 10px; font-weight: 700; font-size: 14px; color: var(--accent); }
 .game-card:hover .arrow { transform: translateX(6px); }
@@ -337,10 +336,8 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
 @media (max-width: 860px) {
   .game-hero-grid, .about-grid { grid-template-columns: 1fr; }
-  .games-grid { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d"; }
-  .games-grid > :nth-child(1) { flex-direction: column; }
-  .games-grid > :nth-child(1) .game-art { flex: none; aspect-ratio: 16 / 9; min-height: 0; }
-  .games-grid > :nth-child(4) .game-art { min-height: 340px; }
+  .games-grid { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d"; grid-template-rows: 260px 240px 240px 460px; }
+  .games-grid > :nth-child(1) .game-body h3 { font-size: 32px; }
   .contact-link { grid-template-columns: 1fr auto; }
   .contact-key { grid-column: 1 / -1; }
   .hero-caption { bottom: auto; top: 76px; }

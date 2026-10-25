@@ -60,6 +60,7 @@ const GAMES = [
     platform: "PC",
     style: "3D",
     status: "Released · 2024 · Team project",
+    team: true,                              // true = team dev, leave out = solo dev
     accent: "cyan",
     pitch:
       "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
