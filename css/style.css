@@ -87,18 +87,6 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.08); transition: opacity 1.4s var(--ease); }
 .slide.on { opacity: 1; animation: kenburns 7s linear forwards; }
 @keyframes kenburns { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.12) translate(-1.5%, -1%); } }
-#drive { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; image-rendering: pixelated; }
-.drive-hint {
-  position: absolute; z-index: 4; right: clamp(16px, 5vw, 64px); top: 96px; margin: 0;
-  display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; color: var(--text);
-  background: rgba(24, 16, 48, .7); backdrop-filter: blur(6px); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-strong);
-  transition: opacity .6s, transform .6s var(--ease);
-  animation: nudge 2.4s ease-in-out infinite;
-}
-.drive-hint .key { font-family: var(--pixel); font-size: 11px; color: var(--marigold); }
-.drive-hint.gone { opacity: 0; transform: translateY(-8px); animation: none; }
-@keyframes nudge { 50% { transform: translateX(-6px); } }
-@media (hover: none) { .drive-hint { display: none; } }
 .hero-shade {
   position: absolute; inset: 0; z-index: 2;
   background:
