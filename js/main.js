@@ -39,9 +39,12 @@ onScroll();
 document.querySelectorAll("[data-split]").forEach((el) => {
   const text = el.textContent;
   el.setAttribute("aria-label", text);
-  el.innerHTML = [...text]
-    .map((ch, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${ch === " " ? "&nbsp;" : esc(ch)}</span>`)
-    .join("");
+  // Letters animate one by one, but each word stays on one line
+  let i = 0;
+  el.innerHTML = text.split(" ")
+    .map((word) => `<span class="word" aria-hidden="true">${[...word]
+      .map((ch) => `<span class="ch" style="--i:${i++}">${esc(ch)}</span>`).join("")}</span>`)
+    .join(" ");
 });
 
 const heroMedia = document.getElementById("hero-media");
