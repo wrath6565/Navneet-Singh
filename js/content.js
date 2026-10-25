@@ -85,8 +85,8 @@ const GAMES = [
     docs: [],
   },
   {
-    slug: "return-to-sender",
-    title: "Return to Sender",
+    slug: "dole-shole",
+    title: "Dole Shole",
     subtitle: "A beat 'em up for 1–2 players",
     genre: "2.5D beat 'em up",
     platform: "PC · couch co-op",
