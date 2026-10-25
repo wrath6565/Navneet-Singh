@@ -102,9 +102,10 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-shade {
   position: absolute; inset: 0; z-index: 2;
   background:
-    linear-gradient(180deg, rgba(24,16,48,.7) 0%, rgba(24,16,48,.1) 28%, rgba(24,16,48,.35) 60%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(24,16,48,.85), rgba(24,16,48,.2) 65%);
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 80%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(0,0,0,.45), rgba(0,0,0,0) 55%);
 }
+.hero-content { text-shadow: 0 2px 14px rgba(0,0,0,.55); }
 .hero-caption {
   position: absolute; z-index: 3; right: clamp(16px, 5vw, 64px); bottom: 40px; margin: 0;
   font-weight: 700; font-size: 14px; color: var(--text);
@@ -134,7 +135,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .loaded .hero-name .ch { opacity: 1; transform: none; }
 .aka { margin: -8px 0 20px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .aka b { color: var(--text); }
-.hero-tagline { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: var(--muted); margin: 0 0 36px; max-width: 580px; }
+.hero-tagline { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: var(--text); margin: 0 0 36px; max-width: 580px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .scroll-cue { position: absolute; z-index: 3; left: 50%; bottom: 32px; transform: translateX(-50%); width: 24px; height: 38px; border: 2px solid var(--line-strong); border-radius: 14px; }
