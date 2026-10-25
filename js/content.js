@@ -56,23 +56,25 @@ const GAMES = [
   {
     slug: "hyper-flux",
     title: "Hyper Flux",
-    genre: "Gravity speedrunner",
-    platform: "PC",
-    style: "3D",
-    status: "Released · 2024 · Team project",
+    genre: "3D speedrun platformer",
+    platform: "PC (Windows) · Steam",
+    style: "3D, stylised sci-fi",
+    status: "Released on Steam · Jan 2025 · Team project",
     team: true,                              // true = team dev, leave out = solo dev
     accent: "cyan",
     pitch:
-      "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
+      "Fly through shattered planets in a zero-gravity suit, pushing and pulling yourself with force orbs to reach the portal as fast as you can.",
     story:
-      "The hero finally gets one day of holiday from his evil corporate job, and then a galaxy-wide explosion " +
-      "hits. He can get evacuated, or he can put on a special suit that manipulates gravity and race across four " +
-      "planets. He chooses the suit. Made with a friend in 2024.",
+      "Elio, a tech-soldier, finally gets a 24-hour holiday to finish his bucket list, and then the world starts to end. " +
+      "Strap on a zero-gravity suit and use force-manipulating orbs to push and pull your way across shattered planets. " +
+      "Keep your momentum, manage your fuel, and collect ingredients to upgrade the suit for faster times. A comical story that starts with a bang.",
     role:
       "3D asset building, and design of 2 levels on the Invisible Planet, where things only appear under a special light.",
     features: [
-      "Gravity manipulation with a specialised suit",
-      "Speedrunning across 4 planets",
+      "Push and pull through levels with force-manipulating orbs",
+      "Momentum and fuel management in a zero-gravity suit",
+      "Suit upgrades from ingredients you collect",
+      "Steam Leaderboards for every run",
       "Invisible Planet: the world only shows up under special light",
     ],
     cover: "assets/images/hyperflux-2.webp",
@@ -81,7 +83,9 @@ const GAMES = [
       "assets/images/hyperflux-1.webp",
     ],
     trailer: "",
-    links: [],
+    links: [
+      { label: "Get it on Steam", url: "https://store.steampowered.com/app/2813890/Hyper_Flux/" },
+    ],
     docs: [],
   },
   {
