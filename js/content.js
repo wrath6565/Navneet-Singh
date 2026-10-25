@@ -21,13 +21,15 @@ const SITE = {
    * Option A: put a file in assets/video/ and set file, e.g. "assets/video/showreel.mp4"
    *           (keep it short, muted-friendly, under ~25 MB; it loops silently in the background)
    * Option B: set youtube to the video ID, e.g. "dQw4w9WgXcQ" (used for the "Watch full reel" button)
+   * background = optional lighter, silent copy that loops behind the hero (file is used for "Watch full reel")
    * poster = an image shown while the video loads
    * slides = until there's a video, these screenshots play as a slow slideshow instead
    */
   showreel: {
-    file: "",
+    file: "assets/video/showreel.mp4",
+    background: "assets/video/showreel-bg.mp4",
     youtube: "",
-    poster: "",
+    poster: "assets/images/showreel-poster.webp",
     slides: [
       "assets/images/beatemup-fight.webp",
       "assets/images/hyperflux-2.webp",

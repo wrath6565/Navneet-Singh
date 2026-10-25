@@ -53,7 +53,7 @@ if (heroMedia) {
   if (reel.file) {
     heroMedia.insertAdjacentHTML(
       "afterbegin",
-      `<video class="hero-video" src="${esc(reel.file)}" ${reel.poster ? `poster="${esc(reel.poster)}"` : ""}
+      `<video class="hero-video" src="${esc(reel.background || reel.file)}" ${reel.poster ? `poster="${esc(reel.poster)}"` : ""}
         autoplay muted loop playsinline preload="auto"></video>`
     );
   } else if (reel.slides && reel.slides.length) {
