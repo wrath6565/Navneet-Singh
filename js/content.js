@@ -105,7 +105,8 @@ const GAMES = [
     ],
     palette: [],
     curve: null,
-    cover: "assets/images/hyperflux-2.webp",
+    cover: "assets/images/hyperflux-poster.webp",
+    coverHasTitle: true,
     screenshots: [
       "assets/images/hyperflux-2.webp",
       "assets/images/hyperflux-1.webp",
