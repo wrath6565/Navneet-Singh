@@ -50,6 +50,7 @@ const SITE = {
  * status    = shown as a tag on the game page, e.g. "Released", "In development"
  * team      = true for a team project; leave it out for a solo project
  * portrait  = true for mobile games, so screenshots show as phone screens
+ * poster    = optional poster image (2:3), shown at the top of the game page
  * links     = buttons on the game page, add as many as you want
  * docs      = your design documents; each one becomes a card on the game page
  *
@@ -175,6 +176,7 @@ const GAMES = [
       tension:   [2, 5, 7, 3, 7, 8, 3, 7, 8.5, 4, 8, 9, 5, 9, 10],
       note: "Intensity comes from the planned enemy threat per section. Novelty and tension follow the pacing rules in the design bible.",
     },
+    poster: "assets/images/dole-shole-poster.webp",
     cover: "assets/images/beatemup-fight.webp",
     screenshots: [
       "assets/images/beatemup-select.webp",

@@ -323,7 +323,9 @@ if (gamePage) {
       <section class="game-hero accent-${esc(g.accent)}">
         <a class="back" href="index.html#games"><span class="arrow">←</span> All games</a>
         <div class="game-hero-grid">
-          <div class="game-hero-art reveal${g.portrait ? " is-phones" : ""}">${cover(g)}</div>
+          ${g.poster
+            ? `<button type="button" class="game-hero-art is-poster shot reveal" data-full="${esc(g.poster)}" aria-label="View the ${esc(g.title)} poster larger"><img src="${esc(g.poster)}" alt="${esc(g.title)} poster"></button>`
+            : `<div class="game-hero-art reveal${g.portrait ? " is-phones" : ""}">${cover(g)}</div>`}
           <div class="reveal" style="--d:120ms">
             <span class="tag">${esc(g.status)}</span>
             <h1 class="game-title">${esc(g.title)}</h1>
