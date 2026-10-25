@@ -51,6 +51,7 @@ const SITE = {
  * team      = true for a team project; leave it out for a solo project
  * portrait  = true for mobile games, so screenshots show as phone screens
  * poster    = optional poster image (2:3), shown at the top of the game page
+ * heroPoster = optional landscape poster (3:2); replaces the poster at the top of the game page
  * coverHasTitle = true when the cover image already shows the name (the card then skips its own title)
  * links     = buttons on the game page, add as many as you want
  * docs      = your design documents; each one becomes a card on the game page
@@ -279,6 +280,7 @@ const GAMES = [
       note: "Intensity is the road speed, rising from 1× to 3× over five minutes. Novelty peaks at swerving traffic, lane changes and new regions. Tension is the design target, to be checked in playtests.",
     },
     poster: "assets/images/horn-ok-please-poster.webp",
+    heroPoster: "assets/images/horn-ok-please-poster-wide.webp",
     cover: "assets/images/horn-ok-please-poster.webp",
     coverHasTitle: true,
     screenshots: [

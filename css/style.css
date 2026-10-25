@@ -429,3 +429,5 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .game-card.cover-titled .game-body h3 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .game-card.cover-titled .game-meta { padding: 7px 12px; border-radius: 999px; background: rgba(11, 7, 22, .82); border: 2px solid var(--accent); color: var(--text); font-size: 13px; }
 .games-grid > .cover-titled:nth-child(1) .game-art img { object-position: center 85%; }
+.game-hero-art.is-wide-poster { aspect-ratio: 3 / 2; width: 100%; padding: 0; cursor: zoom-in; background: none; }
+.game-hero-art.is-wide-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
