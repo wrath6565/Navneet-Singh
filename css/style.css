@@ -3,7 +3,6 @@
   --bg: #181030;
   --bg-2: #201640;
   --panel: #261b4a;
-  --ambient: var(--marigold);
   --line: rgba(246, 239, 226, .1);
   --line-strong: rgba(246, 239, 226, .24);
   --text: #f6efe2;
@@ -15,7 +14,7 @@
   --cyan: #62dbe6;
   --brass: #cf9f5f;
   --accent: var(--marigold);
-  --display: "Bricolage Grotesque", "Manrope", sans-serif;
+  --display: "Manrope", system-ui, sans-serif;
   --pixel: "Silkscreen", monospace;
   --body: "Manrope", system-ui, sans-serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -35,15 +34,6 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; }
-/* Ambient glow that shifts to the colour of the game in view */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(70vw 60vh at 100% 0%, color-mix(in srgb, var(--ambient) 22%, transparent), transparent 70%),
-    radial-gradient(60vw 70vh at 0% 100%, color-mix(in srgb, var(--rose) 16%, transparent), transparent 70%),
-    radial-gradient(50vw 50vh at 10% 30%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 70%);
-  transition: background 1s;
-}
 img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 ::selection { background: var(--marigold); color: var(--bg); }
 
@@ -136,12 +126,11 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   font-size: clamp(52px, 10vw, 136px); line-height: .92; letter-spacing: -.015em; margin: 0 0 22px;
 }
 .hero-name .ch {
-  display: inline-block; opacity: 0; transform: translateY(60%) rotate(6deg);
-  transition: opacity .8s var(--ease), transform .9s var(--bounce);
-  transition-delay: calc(250ms + var(--i) * 40ms);
+  display: inline-block; opacity: 0; transform: translateY(20%);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay: calc(200ms + var(--i) * 30ms);
 }
 .loaded .hero-name .ch { opacity: 1; transform: none; }
-.hero-name .ch:hover { color: var(--marigold); transform: translateY(-6px); transition-delay: 0s; transition-duration: .25s; }
 .aka { margin: -8px 0 20px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .aka b { color: var(--text); }
 .hero-tagline { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: var(--muted); margin: 0 0 36px; max-width: 580px; }
@@ -202,7 +191,17 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ===== Game cards ===== */
-.games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+/* Layout: wide PC card on top; mobile (portrait) card on the left; two PC cards stacked on the right */
+.games-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); grid-template-areas: "a a" "d b" "d c"; gap: 28px; }
+.games-grid > :nth-child(1) { grid-area: a; flex-direction: row; }
+.games-grid > :nth-child(1) .game-art { flex: 1.5; aspect-ratio: auto; min-height: 340px; }
+.games-grid > :nth-child(1) .game-body { flex: 1; justify-content: center; }
+.games-grid > :nth-child(2) { grid-area: b; }
+.games-grid > :nth-child(3) { grid-area: c; }
+.games-grid > :nth-child(4) { grid-area: d; }
+.games-grid > :nth-child(4) .game-art { flex: 1; aspect-ratio: auto; min-height: 380px; }
+.games-grid > :nth-child(4) .game-body { flex: 0 0 auto; }
+.game-art.is-portrait img { image-rendering: pixelated; object-position: center 70%; }
 .game-card {
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
   position: relative; display: flex; flex-direction: column; text-decoration: none;
@@ -337,7 +336,11 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .doc-card.empty { border-style: dashed; }
 
 @media (max-width: 860px) {
-  .games-grid, .game-hero-grid, .about-grid { grid-template-columns: 1fr; }
+  .game-hero-grid, .about-grid { grid-template-columns: 1fr; }
+  .games-grid { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d"; }
+  .games-grid > :nth-child(1) { flex-direction: column; }
+  .games-grid > :nth-child(1) .game-art { flex: none; aspect-ratio: 16 / 9; min-height: 0; }
+  .games-grid > :nth-child(4) .game-art { min-height: 340px; }
   .contact-link { grid-template-columns: 1fr auto; }
   .contact-key { grid-column: 1 / -1; }
   .hero-caption { bottom: auto; top: 76px; }

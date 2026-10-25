@@ -54,40 +54,34 @@ const SITE = {
  */
 const GAMES = [
   {
-    slug: "horn-ok-please",
-    title: "Horn OK Please",
-    subtitle: "Mai Nikla Gaddi Le Ke",
-    genre: "Endless lane runner",
-    platform: "Mobile & PC",
-    style: "Top-down pixel art, truck-art palette",
-    status: "In development",
-    accent: "marigold",
-    portrait: true,
+    slug: "hyper-flux",
+    title: "Hyper Flux",
+    genre: "Gravity speedrunner",
+    platform: "PC",
+    style: "3D",
+    status: "Released · 2024 · Team project",
+    accent: "cyan",
     pitch:
-      "A one-thumb highway runner. Tow a swinging trailer through trucks, tuk-tuks, camel carts and cows.",
+      "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
     story:
-      "Tap left or right to switch lanes on a highway that never ends. The trailer swings behind you on every move, " +
-      "and every 800 metres the road crosses into a new region with new traffic and music.",
+      "The hero finally gets one day of holiday from his evil corporate job, and then a galaxy-wide explosion " +
+      "hits. He can get evacuated, or he can put on a special suit that manipulates gravity and race across four " +
+      "planets. He chooses the suit. Made with a friend in 2024.",
+    role:
+      "3D asset building, and design of 2 levels on the Invisible Planet, where things only appear under a special light.",
     features: [
-      "Two inputs, lots of depth: you learn to read the traffic",
-      "A trailer that swings on every lane change",
-      "Five regions, roads that narrow and widen, and traffic that signals before it swerves",
-      "Power-ups and a garage of upgrades and skins",
+      "Gravity manipulation with a specialised suit",
+      "Speedrunning across 4 planets",
+      "Invisible Planet: the world only shows up under special light",
     ],
-    cover: "",         // portrait games use their screenshots as the cover
+    cover: "assets/images/hyperflux-2.webp",
     screenshots: [
-      "assets/images/horn-menu.webp",
-      "assets/images/horn-beach.webp",
-      "assets/images/horn-desert.webp",
-      "assets/images/horn-mountains.webp",
-      "assets/images/horn-garage.webp",
-      "assets/images/horn-paused.webp",
+      "assets/images/hyperflux-2.webp",
+      "assets/images/hyperflux-1.webp",
     ],
-    trailer: "",       // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
-    links: [],         // e.g. { label: "Play on itch.io", url: "https://wrath65.itch.io/..." }
-    docs: [
-      { title: "Game Design Document", url: "https://claude.ai/artifact/1qfrEE1BnVPwnG2atGEr7X", note: "Core loop, regions, economy, tension curve, UI, art and playtesting" },
-    ],
+    trailer: "",
+    links: [],
+    docs: [],
   },
   {
     slug: "return-to-sender",
@@ -150,34 +144,40 @@ const GAMES = [
     docs: [],
   },
   {
-    slug: "hyper-flux",
-    title: "Hyper Flux",
-    genre: "Gravity speedrunner",
-    platform: "PC",
-    style: "3D",
-    status: "Released · 2024 · Team project",
-    accent: "cyan",
+    slug: "horn-ok-please",
+    title: "Horn OK Please",
+    subtitle: "Mai Nikla Gaddi Le Ke",
+    genre: "Endless lane runner",
+    platform: "Mobile & PC",
+    style: "Top-down pixel art, truck-art palette",
+    status: "In development",
+    accent: "marigold",
+    portrait: true,
     pitch:
-      "One day off from an evil corporate job, a galaxy-wide explosion, and a suit that bends gravity. Speedrun across 4 planets.",
+      "A one-thumb highway runner. Tow a swinging trailer through trucks, tuk-tuks, camel carts and cows.",
     story:
-      "The hero finally gets one day of holiday from his evil corporate job, and then a galaxy-wide explosion " +
-      "hits. He can get evacuated, or he can put on a special suit that manipulates gravity and race across four " +
-      "planets. He chooses the suit. Made with a friend in 2024.",
-    role:
-      "3D asset building, and design of 2 levels on the Invisible Planet, where things only appear under a special light.",
+      "Tap left or right to switch lanes on a highway that never ends. The trailer swings behind you on every move, " +
+      "and every 800 metres the road crosses into a new region with new traffic and music.",
     features: [
-      "Gravity manipulation with a specialised suit",
-      "Speedrunning across 4 planets",
-      "Invisible Planet: the world only shows up under special light",
+      "Two inputs, lots of depth: you learn to read the traffic",
+      "A trailer that swings on every lane change",
+      "Five regions, roads that narrow and widen, and traffic that signals before it swerves",
+      "Power-ups and a garage of upgrades and skins",
     ],
-    cover: "assets/images/hyperflux-2.webp",
+    cover: "",         // portrait games use their screenshots as the cover
     screenshots: [
-      "assets/images/hyperflux-2.webp",
-      "assets/images/hyperflux-1.webp",
+      "assets/images/horn-menu.webp",
+      "assets/images/horn-beach.webp",
+      "assets/images/horn-desert.webp",
+      "assets/images/horn-mountains.webp",
+      "assets/images/horn-garage.webp",
+      "assets/images/horn-paused.webp",
     ],
-    trailer: "",
-    links: [],
-    docs: [],
+    trailer: "",       // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
+    links: [],         // e.g. { label: "Play on itch.io", url: "https://wrath65.itch.io/..." }
+    docs: [
+      { title: "Game Design Document", url: "https://claude.ai/artifact/1qfrEE1BnVPwnG2atGEr7X", note: "Core loop, regions, economy, tension curve, UI, art and playtesting" },
+    ],
   },
 ];
 

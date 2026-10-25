@@ -206,7 +206,7 @@ if (gamesGrid) {
   gamesGrid.innerHTML = GAMES.map(
     (g, i) => `
     <a class="game-card reveal tilt accent-${esc(g.accent)}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
-      <div class="game-art">${cover(g)}</div>
+      <div class="game-art${g.portrait ? " is-portrait" : ""}">${g.portrait && g.screenshots.length ? art(g.screenshots[1] || g.screenshots[0], g.title) : cover(g)}</div>
       <div class="game-body">
         <div class="game-top">
           <span class="game-num">${String(i + 1).padStart(2, "0")}</span>
@@ -347,17 +347,6 @@ const io = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 requestAnimationFrame(() => document.body.classList.add("loaded"));
-
-// The page's ambient glow takes the colour of whichever game is in view
-const ambient = new IntersectionObserver(
-  (entries) => entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    const a = [...e.target.classList].find((c) => c.startsWith("accent-"));
-    document.body.style.setProperty("--ambient", `var(--${a ? a.slice(7) : "marigold"})`);
-  }),
-  { threshold: 0.6 }
-);
-document.querySelectorAll(".game-card").forEach((el) => ambient.observe(el));
 
 // Cards gently tilt toward the cursor and a light follows it
 if (!reduceMotion && matchMedia("(hover: hover)").matches) {
