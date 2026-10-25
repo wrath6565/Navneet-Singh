@@ -51,3 +51,6 @@
 .modal-body { animation: slam .35s steps(3) 1; }
 @keyframes slam { 0% { transform: scale(1.12) rotate(-2deg); } 66% { transform: scale(.98) rotate(1deg); } 100% { transform: none; } }
 
+/* Game page design sections */
+.mech, .loop li, .curve, .role-box, .swatch { border-color: var(--ink); border-width: 3px; box-shadow: 5px 5px 0 var(--ink); }
+.role-box { border-left-color: var(--accent); }

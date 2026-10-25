@@ -358,3 +358,60 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
   .slide.on { transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- Game page design sections ---------- */
+.gd-nav {
+  position: sticky; top: 64px; z-index: 5; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  padding: 12px clamp(16px, 6vw, 96px); margin: 24px auto 0; max-width: 1240px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px);
+}
+.gd-nav::-webkit-scrollbar { display: none; }
+.gd-nav a {
+  flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  border: 2px solid var(--line); color: var(--muted); font-weight: 700; font-size: 14px; text-decoration: none; transition: border-color .3s, color .3s;
+}
+.gd-nav a span { font-family: var(--pixel); font-size: 11px; color: var(--accent); }
+.gd-nav a:hover { border-color: var(--accent); color: var(--text); }
+.gd-title { scroll-margin-top: 140px; }
+.gd-num { font-family: var(--pixel); font-size: 14px; color: var(--accent); }
+.soon { color: var(--muted); border: 2px dashed var(--line); border-radius: 14px; padding: 18px 22px; max-width: 760px; margin: 0; }
+.role-box { margin-top: 22px; max-width: 760px; padding: 18px 22px; background: var(--panel); border: 2px solid var(--line); border-left: 6px solid var(--accent); border-radius: 14px; }
+.role-box b { font-family: var(--display); font-size: 18px; }
+.role-box p { margin: 6px 0 0; color: var(--muted); }
+
+.mech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.mech { padding: 18px 20px; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; }
+.mech b { font-family: var(--display); font-size: 19px; font-weight: 800; display: block; }
+.mech p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+
+.loop { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 28px; counter-reset: step; }
+.loop li { position: relative; padding: 18px; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; counter-increment: step; }
+.loop li::before { content: counter(step); display: inline-grid; place-items: center; width: 28px; height: 28px; margin-bottom: 10px; border-radius: 8px; background: var(--accent); color: var(--ink, #0b0716); font-family: var(--pixel); font-size: 12px; }
+.loop li:not(:last-child)::after { content: "→"; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 800; font-size: 18px; }
+.loop b { display: block; font-family: var(--display); font-size: 19px; font-weight: 800; }
+.loop span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+.loop-back { margin: 18px 0 0; color: var(--muted); max-width: 760px; }
+.loop-back span { color: var(--accent); font-weight: 800; margin-right: 4px; }
+
+.palette { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 26px; }
+.swatch { width: 120px; border-radius: 10px; overflow: hidden; border: 2px solid var(--line); background: var(--panel); font-size: 13px; }
+.swatch i { display: block; height: 48px; }
+.swatch span { display: block; padding: 6px 10px; color: var(--muted); }
+
+.curve { padding: 18px; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; }
+.curve-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.curve-legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 8px; }
+.curve-scroll { overflow-x: auto; }
+.curve svg { display: block; width: 100%; min-width: 620px; height: auto; }
+.curve .grid { stroke: var(--line); stroke-width: 1; }
+.curve .band { fill: color-mix(in srgb, var(--text) 5%, transparent); }
+.curve .axis { fill: var(--muted); font: 600 12px var(--body, system-ui); }
+.curve .group { fill: var(--text); font: 700 12px var(--body, system-ui); }
+.curve-line { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.curve-note { margin: 12px 0 0; color: var(--muted); font-size: 14px; max-width: 760px; }
+
+@media (max-width: 860px) {
+  .gd-nav { top: 56px; padding: 10px 16px; }
+  .loop { grid-template-columns: 1fr; gap: 14px; }
+  .loop li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -19px; transform: translateX(-50%); }
+}

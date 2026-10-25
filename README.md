@@ -7,7 +7,7 @@ A cinematic portfolio site for my games and experiments. It's plain HTML, CSS an
 Everything you see on the site comes from **`js/content.js`**:
 
 - `SITE`: name, tagline, intro, showreel, influences, stats, contact links
-- `GAMES`: one entry per game (story, features, status, screenshots, trailer, links, docs)
+- `GAMES`: one entry per game (overview, mechanics, core loop, art & UI, intensity/novelty/tension curve, screenshots, trailer, links, docs). Leave a section empty and the game page shows "Coming soon".
 - `EXPLORATIONS`: other work like design pitches, Unity experiments, 3D art
 
 To add images, put them in `assets/images/` and reference them, e.g. `cover: "assets/images/hyper-flux.png"`.

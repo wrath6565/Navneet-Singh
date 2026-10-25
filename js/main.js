@@ -200,6 +200,49 @@ if (heroMedia) {
   else { hint.hidden = true; sprite(TROLLEY, trolley.x, trolley.y, -Math.PI / 2); sprite(TRACTOR, car.x, car.y, -Math.PI / 2); }
 }
 
+// ---------- Game page sections ----------
+const GD_SECTIONS = [
+  ["overview", "Overview"],
+  ["mechanics", "Mechanics"],
+  ["core-loop", "Core loop"],
+  ["art-ui", "Art & UI"],
+  ["curves", "Intensity, novelty & tension"],
+];
+const gdHead = (id, i) =>
+  `<h2 class="sub-title gd-title reveal" id="${id}"><span class="gd-num">${String(i + 1).padStart(2, "0")}</span>${GD_SECTIONS[i][1]}</h2>`;
+const soon = () => `<p class="soon reveal">Coming soon.</p>`;
+
+// Line chart of intensity, novelty and tension (values 0 to 10)
+function curveChart(c) {
+  const W = 760, H = 300, L = 34, R = 14, T = c.groups && c.groups.length ? 30 : 14, B = 34;
+  const n = c.labels.length;
+  const x = (i) => L + ((W - L - R) * i) / (n - 1);
+  const y = (v) => T + (H - T - B) * (1 - v / 10);
+  const series = [
+    ["intensity", "Intensity", "var(--marigold)"],
+    ["novelty", "Novelty", "var(--teal)"],
+    ["tension", "Tension", "var(--rose)"],
+  ];
+  const bands = (c.groups || []).map((g, k) => {
+    const x0 = g.from === 0 ? L : (x(g.from - 1) + x(g.from)) / 2;
+    const x1 = g.to === n - 1 ? W - R : (x(g.to) + x(g.to + 1)) / 2;
+    return `${k % 2 ? "" : `<rect class="band" x="${x0}" y="${T}" width="${x1 - x0}" height="${H - T - B}"/>`}
+      <text class="group" x="${(x0 + x1) / 2}" y="${T - 10}" text-anchor="middle">${esc(g.label)}</text>`;
+  }).join("");
+  const grid = [0, 5, 10].map((v) => `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text class="axis" x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join("");
+  const labels = c.labels.map((t, i) => `<text class="axis" x="${x(i)}" y="${H - 12}" text-anchor="middle">${esc(t)}</text>`).join("");
+  const lines = series.map(([k, , col]) => {
+    const pts = c[k].map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
+    return `<polyline class="curve-line" style="stroke:${col}" points="${pts.join(" ")}"/>` +
+      c[k].map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3.5" style="fill:${col}"/>`).join("");
+  }).join("");
+  return `<div class="curve reveal">
+    <div class="curve-legend">${series.map(([, label, col]) => `<span><i style="background:${col}"></i>${label}</span>`).join("")}</div>
+    <div class="curve-scroll"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Intensity, novelty and tension over a run">${bands}${grid}${labels}${lines}</svg></div>
+    ${c.note ? `<p class="curve-note">${esc(c.note)}</p>` : ""}
+  </div>`;
+}
+
 // ---------- Home sections ----------
 const gamesGrid = document.getElementById("games-grid");
 if (gamesGrid) {
@@ -296,18 +339,38 @@ if (gamePage) {
         </div>
       </section>
 
+      <nav class="gd-nav" aria-label="On this page">
+        ${GD_SECTIONS.map(([id, label], i) => `<a href="#${id}"><span>${String(i + 1).padStart(2, "0")}</span>${label}</a>`).join("")}
+      </nav>
+
       <section class="section accent-${esc(g.accent)}">
-        <h2 class="sub-title reveal">The Story</h2>
-        <p class="prose reveal">${esc(g.story)}</p>
-        ${g.role ? `<h2 class="sub-title reveal">My Role</h2><p class="prose reveal">${esc(g.role)}</p>` : ""}
-        <h2 class="sub-title reveal">Features</h2>
-        <ul class="features">${list(g.features)}</ul>
+        ${gdHead("overview", 0)}
+        ${g.overview ? `<p class="prose reveal">${esc(g.overview)}</p>` : soon()}
+        ${g.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(g.role)}</p></div>` : ""}
+
+        ${gdHead("mechanics", 1)}
+        ${g.mechanics && g.mechanics.length
+          ? `<div class="mech-grid">${g.mechanics.map((m, i) => `<div class="mech reveal" style="--d:${i * 60}ms"><b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div>`).join("")}</div>`
+          : soon()}
+
+        ${gdHead("core-loop", 2)}
+        ${g.loop && g.loop.length
+          ? `<ol class="loop">${g.loop.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><b>${esc(s.name)}</b><span>${esc(s.text)}</span></li>`).join("")}</ol>
+             <p class="loop-back reveal"><span aria-hidden="true">↻</span> ${esc(g.loopBack || "Then go again.")}</p>`
+          : soon()}
+
+        ${gdHead("art-ui", 3)}
+        ${g.art && g.art.length ? `<ul class="features">${list(g.art)}</ul>` : ""}
+        ${g.palette && g.palette.length
+          ? `<div class="palette reveal">${g.palette.map((c) => `<div class="swatch"><i style="background:${esc(c.hex)}"></i><span>${esc(c.name)}</span></div>`).join("")}</div>`
+          : ""}
+        <div class="shots${g.portrait ? " portrait" : ""}">${shots}</div>
+
+        ${gdHead("curves", 4)}
+        ${g.curve ? curveChart(g.curve) : soon()}
 
         ${g.trailer ? `<h2 class="sub-title reveal">Trailer</h2>
           <div class="video reveal"><iframe src="${esc(g.trailer)}" title="${esc(g.title)} trailer" allowfullscreen></iframe></div>` : ""}
-
-        <h2 class="sub-title reveal">Screenshots</h2>
-        <div class="shots${g.portrait ? " portrait" : ""}">${shots}</div>
 
         <h2 class="sub-title reveal">Documentation</h2>
         <div class="docs">${docs}</div>
