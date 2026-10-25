@@ -82,7 +82,7 @@ const GAMES = [
       "Elio, a tech-soldier, finally gets a 24-hour holiday to finish his bucket list, and then the world starts to end. " +
       "He straps on a zero-gravity suit and races across shattered planets to the end portal. A comical story that starts with a bang. Made as a team in 2024.",
     role:
-      "3D asset building, and design of 2 levels on the Invisible Planet, where things only appear under a special light.",
+      "3D asset building, design of 2 levels on the Invisible Planet (where things only appear under a special light), and the game's trailer.",
     mechanics: [
       { name: "Force orbs", text: "Push and pull yourself through the level with force-manipulating orbs." },
       { name: "Zero-gravity suit", text: "Fly instead of run, and keep your momentum through every gap." },
