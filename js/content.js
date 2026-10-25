@@ -51,6 +51,7 @@ const SITE = {
  * team      = true for a team project; leave it out for a solo project
  * portrait  = true for mobile games, so screenshots show as phone screens
  * poster    = optional poster image (2:3), shown at the top of the game page
+ * coverHasTitle = true when the cover image already shows the name (the card then skips its own title)
  * links     = buttons on the game page, add as many as you want
  * docs      = your design documents; each one becomes a card on the game page
  *
@@ -177,7 +178,8 @@ const GAMES = [
       note: "Intensity comes from the planned enemy threat per section. Novelty and tension follow the pacing rules in the design bible.",
     },
     poster: "assets/images/dole-shole-poster.webp",
-    cover: "assets/images/beatemup-fight.webp",
+    cover: "assets/images/dole-shole-poster-wide.webp",
+    coverHasTitle: true,   // the cover already shows the game's name, so the card only adds the genre line
     screenshots: [
       "assets/images/beatemup-select.webp",
       "assets/images/beatemup-street.webp",

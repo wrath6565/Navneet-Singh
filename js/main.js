@@ -251,7 +251,7 @@ const gamesGrid = document.getElementById("games-grid");
 if (gamesGrid) {
   gamesGrid.innerHTML = GAMES.map(
     (g, i) => `
-    <a class="game-card reveal tilt accent-${esc(g.accent)}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
+    <a class="game-card reveal tilt accent-${esc(g.accent)}${g.coverHasTitle ? " cover-titled" : ""}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
       <div class="game-art${g.portrait ? " is-portrait" : ""}">${g.portrait && g.screenshots.length ? art(g.screenshots[1] || g.screenshots[0], g.title) : cover(g)}</div>
       <div class="game-body">
         <h3>${esc(g.title)}</h3>
