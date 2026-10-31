@@ -311,18 +311,48 @@ const GAMES = [
  * 3D PROJECTS: the first section after the hero. Two blocks, laid out like the games:
  *   #1 tall on the left, with #2 and #3 landscape beside it
  *   #4 tall on the right, with #5 and #6 landscape beside it
- * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
- * fit = "contain" shows the whole render on black instead of cropping it to the card
- * coverHasTitle = true hides the card title (the render already has one); the type shows as a pill, like the game cards
- * titleTop = true puts the card title at the top, for renders with the subject at the bottom
+ * A project with a slug gets its own page (project.html?p=slug), like the games.
+ *
+ * Card fields:
+ *   title, type (short label on the card), image (card art), accent (marigold, teal, rose, cyan)
+ *   coverHasTitle = true hides the card title (the render already has one); the type shows as a pill
+ * Page fields (all optional; an empty section says "Coming soon"):
+ *   status    = tag above the title, e.g. "Personal project"
+ *   poster    = big image at the top of the page (tall works best)
+ *   pitch     = one or two sentences under the title
+ *   category, software, year = the facts list beside the poster
+ *   overview  = a paragraph; role = what you did, if it was a team piece
+ *   wireframes = ["assets/images/....webp", ...]
+ *   shaders   = [{ name, text, image }, ...]   materials and shader breakdowns
+ *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"
+ *   renders   = ["assets/images/....webp", ...]   final renders gallery
  */
 const PROJECTS_3D = [
-  { title: "Dodge Hellcat", type: "Personal project", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", coverHasTitle: true },
-  { title: "Environment", type: "Environment", image: "", url: "", accent: "teal" },
-  { title: "Props", type: "Hard surface", image: "", url: "", accent: "marigold" },
-  { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
-  { title: "Vehicles", type: "Hard surface", image: "", url: "", accent: "rose" },
-  { title: "Animation", type: "Motion", image: "", url: "", accent: "teal" },
+  {
+    slug: "dodge-hellcat",
+    title: "Dodge Challenger Hellcat",
+    type: "Personal project",
+    image: "assets/images/3d-dodge-hellcat.webp",
+    accent: "rose",
+    coverHasTitle: true,
+    status: "Personal project",
+    poster: "assets/images/3d-dodge-hellcat.webp",
+    pitch: "A Dodge Challenger SRT Hellcat, modelled, shaded and lit as a moody studio piece.",
+    category: "Vehicle · Hard surface",
+    software: "",
+    year: "",
+    overview: "",
+    wireframes: [],
+    shaders: [],
+    video: "",
+    youtube: "",
+    renders: ["assets/images/3d-dodge-hellcat.webp"],
+  },
+  { title: "Environment", type: "Environment", image: "", accent: "teal" },
+  { title: "Props", type: "Hard surface", image: "", accent: "marigold" },
+  { title: "Sculpts", type: "Sculpting", image: "", accent: "cyan" },
+  { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
+  { title: "Animation", type: "Motion", image: "", accent: "teal" },
 ];
 
 const EXPLORATIONS = [

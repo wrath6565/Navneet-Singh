@@ -180,12 +180,11 @@ function smallCards(el, list) {
 const projectsGrid = document.getElementById("projects-grid");
 if (projectsGrid) {
   projectsGrid.innerHTML = PROJECTS_3D.map((p, i) => {
-    // A link opens it; otherwise a render opens larger in the lightbox
-    const tag = p.url ? "a" : p.image ? "button" : "div";
-    const href = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"`
-      : p.image ? ` type="button" data-full="${esc(p.image)}" aria-label="View ${esc(p.title)} larger"` : "";
+    // Projects with a page open it; placeholders are plain cards
+    const tag = p.slug ? "a" : "div";
+    const href = p.slug ? ` href="project.html?p=${encodeURIComponent(p.slug)}"` : "";
     return `
-    <${tag} class="game-card reveal tilt${tag === "button" ? " shot" : ""}${p.titleTop ? " title-top" : ""}${p.coverHasTitle ? " cover-titled" : ""} accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
+    <${tag} class="game-card reveal tilt accent-${esc(p.accent || "marigold")}${p.titleTop ? " title-top" : ""}${p.coverHasTitle ? " cover-titled" : ""}" style="--d:${i * 90}ms"${href}>
       <div class="game-art${p.fit === "contain" ? " is-contain" : ""}">${art(p.image, p.title, p.accent)}</div>
       <div class="game-body">
         <h3>${esc(p.title)}</h3>
@@ -194,7 +193,6 @@ if (projectsGrid) {
     </${tag}>`;
   }).join("");
 }
-smallCards(document.getElementById("explore-grid"), EXPLORATIONS);
 
 const contactLinks = document.getElementById("contact-links");
 if (contactLinks) {
@@ -301,6 +299,79 @@ if (gamePage) {
 
         <h2 class="sub-title reveal">Documentation</h2>
         <div class="docs">${docs}</div>
+      </section>`;
+  }
+}
+
+// ---------- 3D project page ----------
+const PROJECT_SECTIONS = [
+  ["overview", "Overview"],
+  ["wireframe", "Wireframe"],
+  ["shaders", "Shaders & materials"],
+  ["animation", "Animation"],
+  ["renders", "Renders"],
+];
+const projectPage = document.getElementById("project-page");
+if (projectPage) {
+  const slug = new URLSearchParams(location.search).get("p");
+  const p = PROJECTS_3D.find((x) => x.slug === slug);
+
+  if (!p) {
+    projectPage.innerHTML = `<section class="section"><h1 class="game-title">Not found</h1>
+      <p class="prose">That project wasn't found. <a href="index.html#projects">Back to the 3D projects</a></p></section>`;
+  } else {
+    document.title = `${p.title} · ${SITE.name}`;
+    const head = (i) => `<h2 class="sub-title gd-title reveal" id="${PROJECT_SECTIONS[i][0]}"><span class="gd-num">${String(i + 1).padStart(2, "0")}</span>${PROJECT_SECTIONS[i][1]}</h2>`;
+    const gallery = (imgs, label) => `<div class="shots natural">${imgs.map((src, i) =>
+      `<button type="button" class="shot reveal" style="--d:${i * 80}ms" data-full="${esc(src)}" aria-label="View ${esc(label)} ${i + 1} larger">${art(src, label)}</button>`).join("")}</div>`;
+    const specs = [["Category", p.category], ["Software", p.software], ["Year", p.year]].filter(([, v]) => v);
+    const wire = p.wireframes || [], shaders = p.shaders || [], renders = p.renders || [];
+    const video = p.youtube
+      ? `<div class="video reveal"><iframe src="https://www.youtube.com/embed/${esc(p.youtube)}?rel=0" title="${esc(p.title)} animation" allowfullscreen></iframe></div>`
+      : p.video ? `<div class="video reveal"><video src="${esc(p.video)}" controls playsinline preload="metadata"></video></div>` : soon();
+    const poster = p.poster || p.image;
+
+    document.body.classList.add(`accent-${p.accent || "marigold"}`);
+    projectPage.innerHTML = `
+      <section class="game-hero accent-${esc(p.accent || "marigold")}">
+        <a class="back" href="index.html#projects"><span class="arrow">←</span> All 3D projects</a>
+        <div class="game-hero-grid">
+          ${poster
+            ? `<button type="button" class="game-hero-art is-poster shot reveal" data-full="${esc(poster)}" aria-label="View ${esc(p.title)} larger"><img src="${esc(poster)}" alt="${esc(p.title)}"></button>`
+            : `<div class="game-hero-art reveal">${art("", p.title, p.accent)}</div>`}
+          <div class="reveal" style="--d:120ms">
+            ${p.status ? `<span class="tag">${esc(p.status)}</span>` : ""}
+            <h1 class="game-title">${esc(p.title)}</h1>
+            ${p.pitch ? `<p class="game-pitch big">${esc(p.pitch)}</p>` : ""}
+            ${specs.length ? `<dl class="specs">${specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
+          </div>
+        </div>
+      </section>
+
+      <nav class="gd-nav" aria-label="On this page">
+        ${PROJECT_SECTIONS.map(([id, label], i) => `<a href="#${id}"><span>${String(i + 1).padStart(2, "0")}</span>${label}</a>`).join("")}
+      </nav>
+
+      <section class="section accent-${esc(p.accent || "marigold")}">
+        ${head(0)}
+        ${p.overview ? `<p class="prose reveal">${esc(p.overview)}</p>` : soon()}
+        ${p.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(p.role)}</p></div>` : ""}
+
+        ${head(1)}
+        ${wire.length ? gallery(wire, "wireframe") : soon()}
+
+        ${head(2)}
+        ${shaders.length
+          ? `<div class="mech-grid">${shaders.map((m, i) => `<div class="mech reveal" style="--d:${i * 60}ms">
+              ${m.image ? `<button type="button" class="shot" data-full="${esc(m.image)}" aria-label="View ${esc(m.name)} larger">${art(m.image, m.name)}</button>` : ""}
+              <b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div>`).join("")}</div>`
+          : soon()}
+
+        ${head(3)}
+        ${video}
+
+        ${head(4)}
+        ${renders.length ? gallery(renders, "render") : soon()}
       </section>`;
   }
 }

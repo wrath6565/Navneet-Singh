@@ -337,6 +337,10 @@ button.game-card:hover { border-color: var(--accent); }
 .features li::before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; background: var(--accent); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
 .shots.portrait { grid-template-columns: repeat(auto-fill, minmax(180px, 220px)); }
+/* 3D project galleries keep each image's own shape */
+.shots.natural { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); align-items: start; }
+.shots.natural .shot { aspect-ratio: auto; }
+.shots.natural .shot img { height: auto; }
 .shot { padding: 0; font: inherit; cursor: zoom-in; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; border: 2px solid var(--line); background: var(--panel); transition: border-color .3s, transform .4s var(--bounce); }
 .shot.tall { aspect-ratio: 9 / 16; }
 .shot.tall img { image-rendering: pixelated; }
@@ -401,6 +405,8 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
 .mech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .mech { padding: 18px 20px; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; }
+.mech .shot { display: block; width: 100%; margin-bottom: 14px; }
+.video video { background: #000; object-fit: contain; }
 .mech b { font-family: var(--display); font-size: 19px; font-weight: 800; display: block; }
 .mech p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
 
