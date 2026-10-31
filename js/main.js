@@ -188,7 +188,7 @@ if (projectsGrid) {
     <${tag} class="game-card reveal tilt${tag === "button" ? " shot" : ""}${p.titleTop ? " title-top" : ""} accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
       <div class="game-art${p.fit === "contain" ? " is-contain" : ""}">${art(p.image, p.title, p.accent)}</div>
       <div class="game-body">
-        <h3>${esc(p.title)}</h3>
+        ${p.coverHasTitle ? "" : `<h3>${esc(p.title)}</h3>`}
         <p class="game-meta">${esc(p.type)}${p.image ? "" : " · Soon"}</p>
       </div>
     </${tag}>`;

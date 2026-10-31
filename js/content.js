@@ -313,10 +313,11 @@ const GAMES = [
  *   #4 tall on the right, with #5 and #6 landscape beside it
  * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
  * fit = "contain" shows the whole render on black instead of cropping it to the card
+ * coverHasTitle = true hides the card title (the render already has one); the type still shows
  * titleTop = true puts the card title at the top, for renders with the subject at the bottom
  */
 const PROJECTS_3D = [
-  { title: "Dodge Hellcat", type: "Vehicle render", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", titleTop: true },
+  { title: "Dodge Hellcat", type: "Personal project", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", titleTop: true, coverHasTitle: true },
   { title: "Environment", type: "Environment", image: "", url: "", accent: "teal" },
   { title: "Props", type: "Hard surface", image: "", url: "", accent: "marigold" },
   { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
