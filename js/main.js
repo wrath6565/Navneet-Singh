@@ -162,9 +162,10 @@ if (gamesGrid) {
   ).join("");
 }
 
-const exploreGrid = document.getElementById("explore-grid");
-if (exploreGrid) {
-  exploreGrid.innerHTML = EXPLORATIONS.map((e, i) => {
+// Small cards: 3D projects and explorations share one layout
+function smallCards(el, list) {
+  if (!el) return;
+  el.innerHTML = list.map((e, i) => {
     const tag = e.url ? "a" : "div";
     const href = e.url ? ` href="${esc(e.url)}" target="_blank" rel="noopener"` : "";
     return `
@@ -176,6 +177,8 @@ if (exploreGrid) {
     </${tag}>`;
   }).join("");
 }
+smallCards(document.getElementById("projects-grid"), PROJECTS_3D);
+smallCards(document.getElementById("explore-grid"), EXPLORATIONS);
 
 const contactLinks = document.getElementById("contact-links");
 if (contactLinks) {

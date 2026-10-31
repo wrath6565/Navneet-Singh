@@ -307,6 +307,34 @@ const GAMES = [
  * EXPLORATION: other work (design pitches, experiments, art)
  * type = small label on the card
  */
+/*
+ * 3D PROJECTS: the first section after the hero.
+ * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
+ */
+const PROJECTS_3D = [
+  {
+    title: "Environment",
+    type: "3D · Environment",
+    summary: "Renders coming soon.",
+    image: "",
+    url: "",
+  },
+  {
+    title: "Props",
+    type: "3D · Hard surface",
+    summary: "Renders coming soon.",
+    image: "",
+    url: "",
+  },
+  {
+    title: "Characters",
+    type: "3D · Character",
+    summary: "Renders coming soon.",
+    image: "",
+    url: "",
+  },
+];
+
 const EXPLORATIONS = [
   {
     title: "Archero: Live Event Design",
