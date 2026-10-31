@@ -312,9 +312,10 @@ const GAMES = [
  *   #1 tall on the left, #2 wide on top in the middle, #3 tall on the right,
  *   #4 and #5 landscape under #2.
  * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
+ * fit = "contain" shows the whole render on black instead of cropping it to the card
  */
 const PROJECTS_3D = [
-  { title: "Characters", type: "Character", image: "", url: "", accent: "rose" },
+  { title: "Dodge Hellcat", type: "Vehicle render", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", fit: "contain" },
   { title: "Environment", type: "Environment", image: "", url: "", accent: "teal" },
   { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
   { title: "Props", type: "Hard surface", image: "", url: "", accent: "marigold" },

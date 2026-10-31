@@ -200,13 +200,17 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .games-grid > :nth-child(2) { grid-area: b; }
 .games-grid > :nth-child(3) { grid-area: c; }
 .games-grid > :nth-child(4) { grid-area: d; }
-.projects-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, .8fr); grid-template-areas: "v1 w w v2" "v1 l1 l2 v2"; grid-template-rows: 300px 300px; gap: 28px; }
+.projects-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-areas: "v1 w w v2" "v1 l1 l2 v2"; grid-template-rows: 300px 300px; gap: 28px; }
 .projects-grid > :nth-child(1) { grid-area: v1; }
 .projects-grid > :nth-child(2) { grid-area: w; }
 .projects-grid > :nth-child(3) { grid-area: v2; }
 .projects-grid > :nth-child(4) { grid-area: l1; }
 .projects-grid > :nth-child(5) { grid-area: l2; }
 .projects-grid > :nth-child(n+6) { display: none; }
+.game-art.is-contain { background: #000; }
+button.game-card { font: inherit; color: inherit; text-align: left; padding: 0; cursor: zoom-in; aspect-ratio: auto; border-radius: 18px; border: 2px solid var(--line); background: var(--panel); }
+button.game-card:hover { border-color: var(--accent); }
+.game-art.is-contain > img { object-fit: contain; object-position: center 35%; }
 .projects-grid .game-body h3 { font-size: 26px; }
 .projects-grid > :nth-child(2) .game-body h3 { font-size: 36px; }
 .game-art.is-portrait img { image-rendering: pixelated; object-position: center 70%; }

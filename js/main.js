@@ -180,11 +180,13 @@ function smallCards(el, list) {
 const projectsGrid = document.getElementById("projects-grid");
 if (projectsGrid) {
   projectsGrid.innerHTML = PROJECTS_3D.map((p, i) => {
-    const tag = p.url ? "a" : "div";
-    const href = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"` : "";
+    // A link opens it; otherwise a render opens larger in the lightbox
+    const tag = p.url ? "a" : p.image ? "button" : "div";
+    const href = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"`
+      : p.image ? ` type="button" data-full="${esc(p.image)}" aria-label="View ${esc(p.title)} larger"` : "";
     return `
-    <${tag} class="game-card reveal tilt accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
-      <div class="game-art">${art(p.image, p.title, p.accent)}</div>
+    <${tag} class="game-card reveal tilt${tag === "button" ? " shot" : ""} accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
+      <div class="game-art${p.fit === "contain" ? " is-contain" : ""}">${art(p.image, p.title, p.accent)}</div>
       <div class="game-body">
         <h3>${esc(p.title)}</h3>
         <p class="game-meta">${esc(p.type)}${p.image ? "" : " · Soon"}</p>
@@ -305,10 +307,10 @@ if (gamePage) {
 
 // ---------- Screenshot lightbox ----------
 const modal = document.getElementById("reel-modal");
-if (modal && gamePage) {
+if (modal) {
   const body = document.getElementById("reel-body");
   const close = () => { modal.hidden = true; body.innerHTML = ""; modal.classList.remove("image"); };
-  gamePage.addEventListener("click", (e) => {
+  document.addEventListener("click", (e) => {
     const shot = e.target.closest(".shot[data-full]");
     if (!shot) return;
     body.innerHTML = `<img src="${esc(shot.dataset.full)}" alt="">`;
