@@ -200,19 +200,21 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .games-grid > :nth-child(2) { grid-area: b; }
 .games-grid > :nth-child(3) { grid-area: c; }
 .games-grid > :nth-child(4) { grid-area: d; }
-.projects-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-areas: "v1 w w v2" "v1 l1 l2 v2"; grid-template-rows: 300px 300px; gap: 28px; }
+.projects-grid { display: grid; grid-template-columns: calc((100% - 28px) / 2.45) minmax(0, 1fr) calc((100% - 28px) / 2.45); grid-template-areas: "v1 a a" "v1 b b" "c c v2" "d d v2"; grid-template-rows: repeat(4, 300px); gap: 28px; }
 .projects-grid > :nth-child(1) { grid-area: v1; }
-.projects-grid > :nth-child(2) { grid-area: w; }
-.projects-grid > :nth-child(3) { grid-area: v2; }
-.projects-grid > :nth-child(4) { grid-area: l1; }
-.projects-grid > :nth-child(5) { grid-area: l2; }
-.projects-grid > :nth-child(n+6) { display: none; }
+.projects-grid > :nth-child(2) { grid-area: a; }
+.projects-grid > :nth-child(3) { grid-area: b; }
+.projects-grid > :nth-child(4) { grid-area: v2; }
+.projects-grid > :nth-child(5) { grid-area: c; }
+.projects-grid > :nth-child(6) { grid-area: d; }
+.projects-grid > :nth-child(n+7) { display: none; }
 .game-art.is-contain { background: #000; }
+.game-art.is-contain > img { object-fit: contain; object-position: center 35%; }
 button.game-card { font: inherit; color: inherit; text-align: left; padding: 0; cursor: zoom-in; aspect-ratio: auto; border-radius: 18px; border: 2px solid var(--line); background: var(--panel); }
 button.game-card:hover { border-color: var(--accent); }
-.game-art.is-contain > img { object-fit: contain; object-position: center 35%; }
+.game-card.title-top .game-body { margin-top: 0; margin-bottom: auto; }
+.game-card.title-top .game-art::after { background: linear-gradient(to bottom, rgba(0,0,0,.85) 0%, rgba(0,0,0,.4) 22%, transparent 40%); }
 .projects-grid .game-body h3 { font-size: 26px; }
-.projects-grid > :nth-child(2) .game-body h3 { font-size: 36px; }
 .game-art.is-portrait img { image-rendering: pixelated; object-position: center 70%; }
 .game-card {
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
@@ -352,7 +354,7 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
 @media (max-width: 860px) {
   .game-hero-grid, .about-grid { grid-template-columns: 1fr; }
-  .projects-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "w w" "v1 v2" "l1 l2"; grid-template-rows: 240px 340px 200px; gap: 16px; }
+  .projects-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "a a" "v1 v2" "b c" "d d"; grid-template-rows: 220px 340px 200px 220px; gap: 16px; }
   .projects-grid .game-body { padding: 16px; } .projects-grid .game-body h3, .projects-grid > :nth-child(2) .game-body h3 { font-size: 22px; }
   .games-grid { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d"; grid-template-rows: 260px 240px 240px 460px; }
   .games-grid > :nth-child(1) .game-body h3 { font-size: 32px; }

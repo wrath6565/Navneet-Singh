@@ -308,18 +308,20 @@ const GAMES = [
  * type = small label on the card
  */
 /*
- * 3D PROJECTS: the first section after the hero. Laid out like the games:
- *   #1 tall on the left, #2 wide on top in the middle, #3 tall on the right,
- *   #4 and #5 landscape under #2.
+ * 3D PROJECTS: the first section after the hero. Two blocks, laid out like the games:
+ *   #1 tall on the left, with #2 and #3 landscape beside it
+ *   #4 tall on the right, with #5 and #6 landscape beside it
  * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
  * fit = "contain" shows the whole render on black instead of cropping it to the card
+ * titleTop = true puts the card title at the top, for renders with the subject at the bottom
  */
 const PROJECTS_3D = [
-  { title: "Dodge Hellcat", type: "Vehicle render", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", fit: "contain" },
+  { title: "Dodge Hellcat", type: "Vehicle render", image: "assets/images/3d-dodge-hellcat.webp", url: "", accent: "rose", titleTop: true },
   { title: "Environment", type: "Environment", image: "", url: "", accent: "teal" },
-  { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
   { title: "Props", type: "Hard surface", image: "", url: "", accent: "marigold" },
+  { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
   { title: "Vehicles", type: "Hard surface", image: "", url: "", accent: "rose" },
+  { title: "Animation", type: "Motion", image: "", url: "", accent: "teal" },
 ];
 
 const EXPLORATIONS = [

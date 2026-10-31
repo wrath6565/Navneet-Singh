@@ -185,7 +185,7 @@ if (projectsGrid) {
     const href = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"`
       : p.image ? ` type="button" data-full="${esc(p.image)}" aria-label="View ${esc(p.title)} larger"` : "";
     return `
-    <${tag} class="game-card reveal tilt${tag === "button" ? " shot" : ""} accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
+    <${tag} class="game-card reveal tilt${tag === "button" ? " shot" : ""}${p.titleTop ? " title-top" : ""} accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
       <div class="game-art${p.fit === "contain" ? " is-contain" : ""}">${art(p.image, p.title, p.accent)}</div>
       <div class="game-body">
         <h3>${esc(p.title)}</h3>
