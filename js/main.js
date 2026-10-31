@@ -328,7 +328,7 @@ if (projectPage) {
     const wire = p.wireframes || [], shaders = p.shaders || [], renders = p.renders || [];
     const video = p.youtube
       ? `<div class="video reveal"><iframe src="https://www.youtube.com/embed/${esc(p.youtube)}?rel=0" title="${esc(p.title)} animation" allowfullscreen></iframe></div>`
-      : p.video ? `<div class="video reveal"><video src="${esc(p.video)}" controls playsinline preload="metadata"></video></div>` : soon();
+      : p.video ? `<div class="video reveal"><video src="${esc(p.video)}"${p.videoPoster ? ` poster="${esc(p.videoPoster)}"` : ""} controls playsinline preload="metadata"></video></div>` : soon();
     const poster = p.poster || p.image;
 
     document.body.classList.add(`accent-${p.accent || "marigold"}`);

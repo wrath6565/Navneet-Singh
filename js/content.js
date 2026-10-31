@@ -325,6 +325,7 @@ const GAMES = [
  *   wireframes = ["assets/images/....webp", ...]
  *   shaders   = [{ name, text, image }, ...]   materials and shader breakdowns
  *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"
+ *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
  */
 const PROJECTS_3D = [
@@ -344,13 +345,33 @@ const PROJECTS_3D = [
     overview: "",
     wireframes: [],
     shaders: [],
-    video: "",
+    video: "assets/video/dodge-hellcat.mp4",
+    videoPoster: "assets/images/3d-dodge-hellcat-video.webp",
     youtube: "",
     renders: ["assets/images/3d-dodge-hellcat.webp"],
   },
   { title: "Environment", type: "Environment", image: "", accent: "teal" },
   { title: "Props", type: "Hard surface", image: "", accent: "marigold" },
-  { title: "Sculpts", type: "Sculpting", image: "", accent: "cyan" },
+  {
+    slug: "ps5-controller",
+    title: "PS5 DualSense Controller",
+    type: "Personal project",
+    image: "assets/images/3d-ps5-controller.webp",
+    accent: "cyan",
+    status: "Personal project",
+    poster: "assets/images/3d-ps5-controller.webp",
+    pitch: "A PS5 DualSense controller, modelled and rendered as a phone wallpaper, with the face-button symbols floating around it.",
+    category: "Product · Hard surface",
+    software: "",
+    year: "",
+    overview: "",
+    wireframes: [],
+    shaders: [],
+    video: "assets/video/ps5-controller.mp4",
+    videoPoster: "assets/images/3d-ps5-controller-video.webp",
+    youtube: "",
+    renders: ["assets/images/3d-ps5-controller.webp"],
+  },
   { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
   { title: "Animation", type: "Motion", image: "", accent: "teal" },
 ];
