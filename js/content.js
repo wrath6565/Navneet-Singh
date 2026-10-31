@@ -308,31 +308,17 @@ const GAMES = [
  * type = small label on the card
  */
 /*
- * 3D PROJECTS: the first section after the hero.
+ * 3D PROJECTS: the first section after the hero. Laid out like the games:
+ *   #1 tall on the left, #2 wide on top in the middle, #3 tall on the right,
+ *   #4 and #5 landscape under #2.
  * image = a render (assets/images/...), url = optional link (ArtStation, Sketchfab, a video)
  */
 const PROJECTS_3D = [
-  {
-    title: "Environment",
-    type: "3D · Environment",
-    summary: "Renders coming soon.",
-    image: "",
-    url: "",
-  },
-  {
-    title: "Props",
-    type: "3D · Hard surface",
-    summary: "Renders coming soon.",
-    image: "",
-    url: "",
-  },
-  {
-    title: "Characters",
-    type: "3D · Character",
-    summary: "Renders coming soon.",
-    image: "",
-    url: "",
-  },
+  { title: "Characters", type: "Character", image: "", url: "", accent: "rose" },
+  { title: "Environment", type: "Environment", image: "", url: "", accent: "teal" },
+  { title: "Sculpts", type: "Sculpting", image: "", url: "", accent: "cyan" },
+  { title: "Props", type: "Hard surface", image: "", url: "", accent: "marigold" },
+  { title: "Vehicles", type: "Hard surface", image: "", url: "", accent: "rose" },
 ];
 
 const EXPLORATIONS = [

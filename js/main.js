@@ -177,7 +177,21 @@ function smallCards(el, list) {
     </${tag}>`;
   }).join("");
 }
-smallCards(document.getElementById("projects-grid"), PROJECTS_3D);
+const projectsGrid = document.getElementById("projects-grid");
+if (projectsGrid) {
+  projectsGrid.innerHTML = PROJECTS_3D.map((p, i) => {
+    const tag = p.url ? "a" : "div";
+    const href = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"` : "";
+    return `
+    <${tag} class="game-card reveal tilt accent-${esc(p.accent || "marigold")}" style="--d:${i * 90}ms"${href}>
+      <div class="game-art">${art(p.image, p.title, p.accent)}</div>
+      <div class="game-body">
+        <h3>${esc(p.title)}</h3>
+        <p class="game-meta">${esc(p.type)}${p.image ? "" : " · Soon"}</p>
+      </div>
+    </${tag}>`;
+  }).join("");
+}
 smallCards(document.getElementById("explore-grid"), EXPLORATIONS);
 
 const contactLinks = document.getElementById("contact-links");
