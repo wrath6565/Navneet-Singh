@@ -324,7 +324,7 @@ const GAMES = [
  *   overview  = a paragraph; role = what you did, if it was a team piece
  *   wireframes = ["assets/images/....webp", ...]
  *   shaders   = [{ name, text, image }, ...]   materials and shader breakdowns
- *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"
+ *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"; it leads the page, looping, and pauses off screen
  *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
  */

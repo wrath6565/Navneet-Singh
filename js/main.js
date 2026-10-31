@@ -308,7 +308,6 @@ const PROJECT_SECTIONS = [
   ["overview", "Overview"],
   ["wireframe", "Wireframe"],
   ["shaders", "Shaders & materials"],
-  ["animation", "Animation"],
   ["renders", "Renders"],
 ];
 const projectPage = document.getElementById("project-page");
@@ -326,15 +325,26 @@ if (projectPage) {
       `<button type="button" class="shot reveal" style="--d:${i * 80}ms" data-full="${esc(src)}" aria-label="View ${esc(label)} ${i + 1} larger">${art(src, label)}</button>`).join("")}</div>`;
     const specs = [["Category", p.category], ["Software", p.software], ["Year", p.year]].filter(([, v]) => v);
     const wire = p.wireframes || [], shaders = p.shaders || [], renders = p.renders || [];
-    const video = p.youtube
-      ? `<div class="video reveal"><iframe src="https://www.youtube.com/embed/${esc(p.youtube)}?rel=0" title="${esc(p.title)} animation" allowfullscreen></iframe></div>`
-      : p.video ? `<div class="video reveal"><video src="${esc(p.video)}"${p.videoPoster ? ` poster="${esc(p.videoPoster)}"` : ""} controls playsinline preload="metadata"></video></div>` : soon();
+    // The animation, if there is one, leads the page and loops. It starts muted (browsers
+    // only autoplay silent video); the viewer can unmute it with the controls.
+    const reel = p.youtube
+      ? `<div class="video project-reel reveal"><iframe src="https://www.youtube.com/embed/${esc(p.youtube)}?autoplay=1&mute=1&loop=1&playlist=${esc(p.youtube)}&rel=0&enablejsapi=1" title="${esc(p.title)} animation" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`
+      : p.video ? `<div class="video project-reel reveal"><video src="${esc(p.video)}"${p.videoPoster ? ` poster="${esc(p.videoPoster)}"` : ""} autoplay muted loop controls playsinline preload="auto"></video></div>` : "";
     const poster = p.poster || p.image;
 
     document.body.classList.add(`accent-${p.accent || "marigold"}`);
     projectPage.innerHTML = `
       <section class="game-hero accent-${esc(p.accent || "marigold")}">
         <a class="back" href="index.html#projects"><span class="arrow">←</span> All 3D projects</a>
+        ${reel ? `${reel}
+        <div class="project-info">
+          <div class="reveal">
+            ${p.status ? `<span class="tag">${esc(p.status)}</span>` : ""}
+            <h1 class="game-title">${esc(p.title)}</h1>
+            ${p.pitch ? `<p class="game-pitch big">${esc(p.pitch)}</p>` : ""}
+          </div>
+          ${specs.length ? `<dl class="specs reveal" style="--d:120ms">${specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
+        </div>` : `
         <div class="game-hero-grid">
           ${poster
             ? `<button type="button" class="game-hero-art is-poster shot reveal" data-full="${esc(poster)}" aria-label="View ${esc(p.title)} larger"><img src="${esc(poster)}" alt="${esc(p.title)}"></button>`
@@ -345,7 +355,7 @@ if (projectPage) {
             ${p.pitch ? `<p class="game-pitch big">${esc(p.pitch)}</p>` : ""}
             ${specs.length ? `<dl class="specs">${specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
           </div>
-        </div>
+        </div>`}
       </section>
 
       <nav class="gd-nav" aria-label="On this page">
@@ -368,11 +378,23 @@ if (projectPage) {
           : soon()}
 
         ${head(3)}
-        ${video}
-
-        ${head(4)}
         ${renders.length ? gallery(renders, "render") : soon()}
       </section>`;
+
+    // Pause the animation once it scrolls out of view (or the tab is hidden), so its
+    // audio never plays where you can't see it; carry on when it comes back
+    const el = projectPage.querySelector(".project-reel video, .project-reel iframe");
+    if (el) {
+      const yt = (cmd) => el.contentWindow.postMessage(JSON.stringify({ event: "command", func: cmd, args: [] }), "*");
+      const play = () => (el.tagName === "VIDEO" ? el.play().catch(() => {}) : yt("playVideo"));
+      const pause = () => (el.tagName === "VIDEO" ? el.pause() : yt("pauseVideo"));
+      let visible = true;
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        visible && !document.hidden ? play() : pause();
+      }, { threshold: 0.25 }).observe(el);
+      document.addEventListener("visibilitychange", () => (document.hidden || !visible ? pause() : play()));
+    }
   }
 }
 
