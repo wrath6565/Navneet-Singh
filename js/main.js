@@ -35,17 +35,24 @@ const onScroll = () => nav.classList.toggle("scrolled", scrollY > 40);
 addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// ---------- Hero: name reveal, showreel, tractor ----------
-document.querySelectorAll("[data-split]").forEach((el) => {
-  const text = el.textContent;
-  el.setAttribute("aria-label", text);
-  // Letters animate one by one, but each word stays on one line
-  let i = 0;
-  el.innerHTML = text.split(" ")
-    .map((word) => `<span class="word" aria-hidden="true">${[...word]
-      .map((ch) => `<span class="ch" style="--i:${i++}">${esc(ch)}</span>`).join("")}</span>`)
-    .join(" ");
-});
+// ---------- Hero: role block, showreel ----------
+// "Hi, I'm a" + a block that tumbles between roles. Four faces round the block,
+// so the roles alternate and the next face always rolls up from below.
+const cube = document.getElementById("role-cube");
+if (cube) {
+  const roles = SITE.roles && SITE.roles.length ? SITE.roles : [SITE.role];
+  const name = document.getElementById("hero-name");
+  name.setAttribute("aria-label", `Hi, I'm a ${roles.join(" and ")}`);
+  [...name.children].forEach((c) => c.setAttribute("aria-hidden", "true"));
+  const widest = roles.reduce((a, b) => (b.length > a.length ? b : a));
+  cube.insertAdjacentHTML("beforebegin", `<span class="cube-sizer">${esc(widest)}</span>`);
+  cube.innerHTML = [0, 1, 2, 3]
+    .map((i) => `<span class="face" style="--f:${i}">${esc(roles[i % roles.length])}</span>`).join("");
+  if (!reduceMotion && roles.length > 1) {
+    let n = 0;
+    setInterval(() => cube.style.setProperty("--turn", ++n), 2600);
+  }
+}
 
 const heroMedia = document.getElementById("hero-media");
 if (heroMedia) {

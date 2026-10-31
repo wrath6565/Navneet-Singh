@@ -14,6 +14,8 @@ const SITE = {
   name: "Navneet Singh",
   handle: "Wrath65",
   role: "Game Designer & 3D Artist",
+  // The hero says "Hi, I'm a ..." and turns a 3D block between these
+  roles: ["3D Artist", "Game Designer"],
   tagline: "I make the games I want to play.",
   intro: "Fun first. Everything after that is problem solving.",
   /*
