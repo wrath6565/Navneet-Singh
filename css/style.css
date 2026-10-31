@@ -117,7 +117,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-name .hi { display: inline-block; }
 .cube-wrap { display: inline-grid; vertical-align: bottom; perspective: 1400px; perspective-origin: 50% 50%; }
 .cube-sizer, .cube { grid-area: 1 / 1; }
-.cube-sizer { visibility: hidden; padding: 0 .18em; line-height: 1.12; white-space: nowrap; }
+.cube-sizer { visibility: hidden; line-height: 1.12; white-space: nowrap; }
 .cube {
   --h: 1.12em; --turn: 0;
   position: relative; transform-style: preserve-3d;
@@ -125,13 +125,10 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   transition: transform 1s var(--bounce);
 }
 .face {
-  position: absolute; inset: 0; display: flex; align-items: center; padding: 0 .18em;
-  white-space: nowrap; line-height: 1.12; color: var(--ink); background: var(--marigold);
-  border: 3px solid var(--ink); backface-visibility: hidden;
+  position: absolute; inset: 0; display: flex; align-items: center;
+  white-space: nowrap; line-height: 1.12; backface-visibility: hidden;
   transform: rotateX(calc(var(--f) * -90deg)) translateZ(calc(var(--h) / 2));
 }
-.face:nth-child(even) { background: #ffd35c; }
-.face { text-shadow: none; }
 .hero-name .hi, .cube-wrap { opacity: 0; transform: translateY(20%); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .hero-name .cube-wrap { transition-delay: .25s; }
 .loaded .hero-name .hi, .loaded .cube-wrap { opacity: 1; transform: none; }
