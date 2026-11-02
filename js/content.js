@@ -329,6 +329,7 @@ const GAMES = [
  *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
  *   hide      = section ids to leave out, e.g. ["renders"] (overview, wireframe, shaders, renders)
+ *   labels    = rename a section on this page, e.g. { renders: "In-game render" }
  */
 const PROJECTS_3D = [
   {
@@ -387,7 +388,28 @@ const PROJECTS_3D = [
     renders: [],
     hide: ["renders"],
   },
-  { title: "Props", type: "Hard surface", image: "", accent: "marigold" },
+  {
+    slug: "hyper-flux-props",
+    title: "Props",
+    type: "Hyper Flux",
+    image: "assets/images/3d-hf-box-ingame.webp",
+    accent: "marigold",
+    status: "Hyper Flux",
+    poster: "assets/images/3d-hf-box-ingame.webp",
+    pitch: "",
+    category: "Props",
+    software: "",
+    year: "",
+    overview: "",
+    shaders: [
+      { image: "assets/images/3d-hf-box-paint.webp" },
+      { image: "assets/images/3d-hf-box-normal.webp" },
+      { image: "assets/images/3d-hf-box-lock.webp" },
+    ],
+    renders: ["assets/images/3d-hf-box-ingame.webp"],
+    labels: { renders: "In-game render" },
+    hide: ["wireframe"],
+  },
   {
     slug: "ps5-controller",
     title: "PS5 DualSense Controller",

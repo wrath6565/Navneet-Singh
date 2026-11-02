@@ -321,7 +321,9 @@ if (projectPage) {
   } else {
     document.title = `${p.title} · ${SITE.name}`;
     // Sections listed in p.hide are left out; the rest are numbered in order
-    const shown = PROJECT_SECTIONS.filter(([id]) => !(p.hide || []).includes(id));
+    // p.labels can rename a section on one page, e.g. { renders: "In-game render" }
+    const shown = PROJECT_SECTIONS.filter(([id]) => !(p.hide || []).includes(id))
+      .map(([id, label]) => [id, (p.labels || {})[id] || label]);
     const num = (id) => String(shown.findIndex(([x]) => x === id) + 1).padStart(2, "0");
     const head = (id) => `<h2 class="sub-title gd-title reveal" id="${id}"><span class="gd-num">${num(id)}</span>${shown.find(([x]) => x === id)[1]}</h2>`;
     const part = (id, html) => (shown.some(([x]) => x === id) ? head(id) + html : "");
