@@ -402,6 +402,7 @@ const PROJECTS_3D = [
     software: "",
     year: "",
     overview: "",
+    wireframes: ["assets/images/3d-hf-box-wire.webp"],
     shaders: [
       { image: "assets/images/3d-hf-box-paint.webp" },
       { image: "assets/images/3d-hf-box-normal.webp" },
@@ -409,7 +410,6 @@ const PROJECTS_3D = [
     ],
     renders: ["assets/images/3d-hf-box-ingame.webp"],
     labels: { renders: "In-game render" },
-    hide: ["wireframe"],
   },
   {
     slug: "ps5-controller",
