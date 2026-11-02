@@ -323,7 +323,7 @@ const GAMES = [
  *   category, software, year = the facts list beside the poster
  *   overview  = a paragraph; role = what you did, if it was a team piece
  *   wireframes = ["assets/images/....webp", ...]
- *   shaders   = [{ name, text, image }, ...]   materials and shader breakdowns
+ *   shaders   = [{ image, name, text }, ...]   materials and shader breakdowns; name and text are optional
  *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"; it leads the page, looping, and pauses off screen
  *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
@@ -338,7 +338,7 @@ const PROJECTS_3D = [
     coverHasTitle: true,
     status: "Personal project",
     poster: "assets/images/3d-dodge-hellcat.webp",
-    pitch: "A Dodge Challenger SRT Hellcat, modelled, shaded and lit as a moody studio piece.",
+    pitch: "",
     category: "Vehicle · Hard surface",
     software: "Blender",
     year: "",
@@ -348,16 +348,8 @@ const PROJECTS_3D = [
       "assets/images/3d-hellcat-clay.webp",
     ],
     shaders: [
-      {
-        name: "Car paint",
-        text: "A Layer Weight facing mask blends a bright red into a near-black, so the paint falls off to dark at glancing angles. A fine Voronoi texture through a Color Ramp breaks up the roughness for the metallic flake.",
-        image: "assets/images/3d-hellcat-paint-nodes.webp",
-      },
-      {
-        name: "Flake up close",
-        text: "The finished paint on the hood, with the flake catching the light around the scoops and mesh.",
-        image: "assets/images/3d-hellcat-hood.webp",
-      },
+      { image: "assets/images/3d-hellcat-paint-nodes.webp" },
+      { image: "assets/images/3d-hellcat-hood.webp" },
     ],
     video: "assets/video/dodge-hellcat.mp4",
     videoPoster: "assets/images/3d-dodge-hellcat-video.webp",
@@ -379,7 +371,7 @@ const PROJECTS_3D = [
     accent: "cyan",
     status: "Personal project",
     poster: "assets/images/3d-ps5-controller.webp",
-    pitch: "A PS5 DualSense controller, modelled and rendered as a phone wallpaper, with the face-button symbols floating around it.",
+    pitch: "",
     category: "Product · Hard surface",
     software: "",
     year: "",
