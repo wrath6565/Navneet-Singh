@@ -327,6 +327,7 @@ const GAMES = [
  *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"; it leads the page, looping, and pauses off screen
  *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
+ *   hide      = section ids to leave out, e.g. ["renders"] (overview, wireframe, shaders, renders)
  */
 const PROJECTS_3D = [
   {
@@ -382,7 +383,8 @@ const PROJECTS_3D = [
     video: "assets/video/shrine.mp4",
     videoPoster: "assets/images/3d-env-shrine.webp",
     youtube: "",
-    renders: ["assets/images/3d-env-torii.webp"],
+    renders: [],
+    hide: ["renders"],
   },
   { title: "Props", type: "Hard surface", image: "", accent: "marigold" },
   {

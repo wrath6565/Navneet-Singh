@@ -320,7 +320,11 @@ if (projectPage) {
       <p class="prose">That project wasn't found. <a href="index.html#projects">Back to the 3D projects</a></p></section>`;
   } else {
     document.title = `${p.title} · ${SITE.name}`;
-    const head = (i) => `<h2 class="sub-title gd-title reveal" id="${PROJECT_SECTIONS[i][0]}"><span class="gd-num">${String(i + 1).padStart(2, "0")}</span>${PROJECT_SECTIONS[i][1]}</h2>`;
+    // Sections listed in p.hide are left out; the rest are numbered in order
+    const shown = PROJECT_SECTIONS.filter(([id]) => !(p.hide || []).includes(id));
+    const num = (id) => String(shown.findIndex(([x]) => x === id) + 1).padStart(2, "0");
+    const head = (id) => `<h2 class="sub-title gd-title reveal" id="${id}"><span class="gd-num">${num(id)}</span>${shown.find(([x]) => x === id)[1]}</h2>`;
+    const part = (id, html) => (shown.some(([x]) => x === id) ? head(id) + html : "");
     const gallery = (imgs, label) => `<div class="shots natural">${imgs.map((src, i) =>
       `<button type="button" class="shot reveal" style="--d:${i * 80}ms" data-full="${esc(src)}" aria-label="View ${esc(label)} ${i + 1} larger">${art(src, label)}</button>`).join("")}</div>`;
     const specs = [["Category", p.category], ["Software", p.software], ["Year", p.year]].filter(([, v]) => v);
@@ -359,27 +363,24 @@ if (projectPage) {
       </section>
 
       <nav class="gd-nav" aria-label="On this page">
-        ${PROJECT_SECTIONS.map(([id, label], i) => `<a href="#${id}"><span>${String(i + 1).padStart(2, "0")}</span>${label}</a>`).join("")}
+        ${shown.map(([id, label]) => `<a href="#${id}"><span>${num(id)}</span>${label}</a>`).join("")}
       </nav>
 
       <section class="section accent-${esc(p.accent || "marigold")}">
-        ${head(0)}
+        ${part("overview", `
         ${p.overview ? `<p class="prose reveal">${esc(p.overview)}</p>` : soon()}
-        ${p.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(p.role)}</p></div>` : ""}
+        ${p.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(p.role)}</p></div>` : ""}`)}
 
-        ${head(1)}
-        ${wire.length ? gallery(wire, "wireframe") : soon()}
+        ${part("wireframe", wire.length ? gallery(wire, "wireframe") : soon())}
 
-        ${head(2)}
-        ${shaders.length
+        ${part("shaders", shaders.length
           ? shaders.every((m) => !m.name && !m.text) ? gallery(shaders.map((m) => m.image), "shader")
           : `<div class="shader-list">${shaders.map((m) => `<div class="shader reveal">
               ${m.image ? `<button type="button" class="shot" data-full="${esc(m.image)}" aria-label="View ${esc(m.name)} larger">${art(m.image, m.name)}</button>` : ""}
               <div><b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div></div>`).join("")}</div>`
-          : soon()}
+          : soon())}
 
-        ${head(3)}
-        ${renders.length ? gallery(renders, "render") : soon()}
+        ${part("renders", renders.length ? gallery(renders, "render") : soon())}
       </section>`;
 
     // Pause the animation once it scrolls out of view (or the tab is hidden), so its
