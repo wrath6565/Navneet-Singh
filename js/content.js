@@ -381,7 +381,10 @@ const PROJECTS_3D = [
     video: "assets/video/ps5-controller.mp4",
     videoPoster: "assets/images/3d-ps5-controller-video.webp",
     youtube: "",
-    renders: ["assets/images/3d-ps5-controller.webp"],
+    renders: [
+      "assets/images/3d-ps5-controller-wide.webp",
+      "assets/images/3d-ps5-controller.webp",
+    ],
   },
   { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
   { title: "Animation", type: "Motion", image: "", accent: "teal" },
