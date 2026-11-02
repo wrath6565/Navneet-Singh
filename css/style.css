@@ -414,6 +414,8 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .mech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .mech { padding: 18px 20px; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; }
 .shader-list { display: grid; gap: 22px; }
+.shader-name { font-family: var(--display); font-size: 22px; font-weight: 800; margin: 32px 0 14px; }
+.shader-name:first-of-type { margin-top: 0; }
 .shader { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; align-items: center; padding: 18px; background: var(--panel); border: 2px solid var(--line); border-radius: 16px; }
 .shader .shot { display: block; width: 100%; aspect-ratio: auto; }
 .shader .shot img { height: auto; }

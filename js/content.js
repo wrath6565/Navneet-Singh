@@ -324,6 +324,7 @@ const GAMES = [
  *   overview  = a paragraph; role = what you did, if it was a team piece
  *   wireframes = ["assets/images/....webp", ...]
  *   shaders   = [{ image, name, text }, ...]   materials and shader breakdowns; name and text are optional
+ *               or [{ name, images: [...] }, ...]   a titled group per material, e.g. node graph + result
  *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"; it leads the page, looping, and pauses off screen
  *   videoPoster = still shown before the video plays
  *   renders   = ["assets/images/....webp", ...]   final renders gallery
@@ -377,8 +378,8 @@ const PROJECTS_3D = [
     overview: "",
     wireframes: ["assets/images/3d-env-clay.webp"],
     shaders: [
-      { image: "assets/images/3d-env-nodes.webp" },
-      { image: "assets/images/3d-env-torii.webp" },
+      { name: "Torii gate shader", images: ["assets/images/3d-env-nodes.webp", "assets/images/3d-env-torii.webp"] },
+      { name: "Guard rail shader", images: ["assets/images/3d-env-rail-nodes.webp", "assets/images/3d-env-rail.webp"] },
     ],
     video: "assets/video/shrine.mp4",
     videoPoster: "assets/images/3d-env-shrine.webp",

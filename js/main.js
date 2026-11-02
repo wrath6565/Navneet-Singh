@@ -374,7 +374,9 @@ if (projectPage) {
         ${part("wireframe", wire.length ? gallery(wire, "wireframe") : soon())}
 
         ${part("shaders", shaders.length
-          ? shaders.every((m) => !m.name && !m.text) ? gallery(shaders.map((m) => m.image), "shader")
+          ? shaders.some((m) => m.images)
+            ? shaders.map((m) => `<h3 class="shader-name reveal">${esc(m.name || "")}</h3>${gallery(m.images || [m.image], m.name || "shader")}`).join("")
+          : shaders.every((m) => !m.name && !m.text) ? gallery(shaders.map((m) => m.image), "shader")
           : `<div class="shader-list">${shaders.map((m) => `<div class="shader reveal">
               ${m.image ? `<button type="button" class="shot" data-full="${esc(m.image)}" aria-label="View ${esc(m.name)} larger">${art(m.image, m.name)}</button>` : ""}
               <div><b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div></div>`).join("")}</div>`
