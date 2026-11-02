@@ -390,7 +390,7 @@ const PROJECTS_3D = [
   },
   {
     slug: "hyper-flux-props",
-    title: "Props",
+    title: "Game Prop",
     type: "Hyper Flux",
     image: "assets/images/3d-hf-box.webp",
     fit: "contain",
@@ -398,7 +398,7 @@ const PROJECTS_3D = [
     status: "Hyper Flux",
     poster: "assets/images/3d-hf-box.webp",
     pitch: "",
-    category: "Props",
+    category: "Game Prop",
     software: "",
     year: "",
     overview: "",
