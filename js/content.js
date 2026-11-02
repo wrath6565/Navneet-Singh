@@ -359,7 +359,6 @@ const PROJECTS_3D = [
       "assets/images/3d-hellcat-headlight.webp",
       "assets/images/3d-hellcat-side.webp",
       "assets/images/3d-hellcat-hood.webp",
-      "assets/images/3d-dodge-hellcat.webp",
     ],
   },
   { title: "Environment", type: "Environment", image: "", accent: "teal" },
