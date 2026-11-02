@@ -402,7 +402,7 @@ const PROJECTS_3D = [
     software: "",
     year: "",
     overview: "",
-    wireframes: ["assets/images/3d-hf-box-wire.webp"],
+    wireframes: ["assets/images/3d-hf-box-wire.webp", { name: "UV unwrap", images: ["assets/images/3d-hf-box-uv.webp"] }],
     shaders: [
       { image: "assets/images/3d-hf-box-paint.webp" },
       { image: "assets/images/3d-hf-box-normal.webp" },

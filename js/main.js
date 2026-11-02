@@ -375,7 +375,11 @@ if (projectPage) {
         ${p.overview ? `<p class="prose reveal">${esc(p.overview)}</p>` : soon()}
         ${p.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(p.role)}</p></div>` : ""}`)}
 
-        ${part("wireframe", wire.length ? gallery(wire, "wireframe") : soon())}
+        ${part("wireframe", wire.length
+          // Plain paths form one gallery; { name, images } entries add a titled group (e.g. UV unwrap)
+          ? gallery(wire.filter((w) => typeof w === "string"), "wireframe") + wire.filter((w) => typeof w !== "string")
+              .map((g) => `<h3 class="shader-name reveal" style="margin-top:32px">${esc(g.name || "")}</h3>${gallery(g.images || [], g.name || "wireframe")}`).join("")
+          : soon())}
 
         ${part("shaders", shaders.length
           ? shaders.some((m) => m.images)
