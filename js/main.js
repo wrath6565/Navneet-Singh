@@ -372,9 +372,9 @@ if (projectPage) {
 
         ${head(2)}
         ${shaders.length
-          ? `<div class="mech-grid">${shaders.map((m, i) => `<div class="mech reveal" style="--d:${i * 60}ms">
+          ? `<div class="shader-list">${shaders.map((m) => `<div class="shader reveal">
               ${m.image ? `<button type="button" class="shot" data-full="${esc(m.image)}" aria-label="View ${esc(m.name)} larger">${art(m.image, m.name)}</button>` : ""}
-              <b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div>`).join("")}</div>`
+              <div><b>${esc(m.name)}</b>${m.text ? `<p>${esc(m.text)}</p>` : ""}</div></div>`).join("")}</div>`
           : soon()}
 
         ${head(3)}
