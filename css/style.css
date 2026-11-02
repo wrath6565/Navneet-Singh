@@ -480,3 +480,26 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .game-hero-art.is-wide-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .game-art.is-contain > img[src*="3d-hf-box"] { object-position: center; }
 .game-hero-art.is-poster > img[src*="3d-hf-box"] { object-fit: contain; }
+
+/* Core loop as a ring */
+.loop-ring { position: relative; width: min(760px, 100%); aspect-ratio: 1; margin: 10px auto 0; }
+.loop-track { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.loop-track circle { fill: none; stroke: var(--accent); stroke-width: .35; stroke-dasharray: 1.2 1.2; opacity: .55; animation: loop-spin 40s linear infinite; transform-origin: 50% 50%; }
+.loop-track path { fill: var(--accent); }
+@keyframes loop-spin { to { stroke-dashoffset: -24; } }
+.loop-ring .loop { display: block; position: absolute; inset: 0; }
+.loop-ring .loop li { position: absolute; left: var(--x); top: var(--y); width: 200px; transform: translate(-50%, -50%); text-align: center; }
+.loop-ring .loop li::after { content: none; }
+.loop-ring .loop-back { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 42%; margin: 0; text-align: center; font-size: 15px; }
+.loop-ring .loop-back span { display: block; font-size: 44px; line-height: 1; margin: 0 0 8px; animation: loop-turn 6s linear infinite; }
+@keyframes loop-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .loop-track circle, .loop-ring .loop-back span { animation: none; } }
+@media (max-width: 700px) {
+  .loop-ring { aspect-ratio: auto; }
+  .loop-track { display: none; }
+  .loop-ring .loop { position: static; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .loop-ring .loop li { position: relative; left: auto; top: auto; width: auto; transform: none; text-align: left; }
+  .loop-ring .loop li::after { content: "↓"; position: absolute; left: 50%; bottom: -19px; transform: translateX(-50%); color: var(--accent); font-weight: 800; }
+  .loop-ring .loop li:last-child::after { content: "↺"; }
+  .loop-ring .loop-back { position: static; transform: none; width: auto; margin-top: 22px; }
+}

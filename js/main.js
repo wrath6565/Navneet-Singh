@@ -280,8 +280,7 @@ if (gamePage) {
 
         ${gdHead("core-loop", 2)}
         ${g.loop && g.loop.length
-          ? `<ol class="loop">${g.loop.map((s, i) => `<li class="reveal" style="--d:${i * 80}ms"><b>${esc(s.name)}</b><span>${esc(s.text)}</span></li>`).join("")}</ol>
-             <p class="loop-back reveal"><span aria-hidden="true">↻</span> ${esc(g.loopBack || "Then go again.")}</p>`
+          ? loopRing(g.loop, g.loopBack)
           : soon()}
 
         ${gdHead("art-ui", 3)}
@@ -304,6 +303,27 @@ if (gamePage) {
 }
 
 // ---------- 3D project page ----------
+// Core loop drawn as a ring: the steps sit around a circle with clockwise arrows between
+// them, and the line that closes the loop sits in the middle. Narrow screens stack them.
+function loopRing(steps, back) {
+  const n = steps.length, R = 36;
+  const pt = (deg, r = R) => [50 + r * Math.cos((deg * Math.PI) / 180), 50 + r * Math.sin((deg * Math.PI) / 180)];
+  const ang = (i) => -90 + (i * 360) / n;
+  const arrows = steps.map((_, i) => {
+    const mid = ang(i) + 180 / n, [x, y] = pt(mid);
+    return `<path d="M -1.6 -1.8 L 1.8 0 L -1.6 1.8 Z" transform="translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${(mid + 90).toFixed(1)})"/>`;
+  }).join("");
+  const items = steps.map((s, i) => {
+    const [x, y] = pt(ang(i));
+    return `<li class="reveal" style="--d:${i * 80}ms;--x:${x.toFixed(2)}%;--y:${y.toFixed(2)}%"><b>${esc(s.name)}</b><span>${esc(s.text)}</span></li>`;
+  }).join("");
+  return `<div class="loop-ring">
+      <svg class="loop-track" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="${R}"/>${arrows}</svg>
+      <ol class="loop">${items}</ol>
+      <p class="loop-back reveal"><span aria-hidden="true">↻</span>${back ? ` ${esc(back)}` : ""}</p>
+    </div>`;
+}
+
 const PROJECT_SECTIONS = [
   ["overview", "Overview"],
   ["wireframe", "Wireframe"],
