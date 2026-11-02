@@ -400,20 +400,55 @@ if (projectPage) {
 }
 
 // ---------- Screenshot lightbox ----------
+// Click any image to open it; step through every image on the page with the arrows,
+// the arrow keys or a swipe
 const modal = document.getElementById("reel-modal");
 if (modal) {
   const body = document.getElementById("reel-body");
-  const close = () => { modal.hidden = true; body.innerHTML = ""; modal.classList.remove("image"); };
+  modal.insertAdjacentHTML("beforeend", `
+    <button class="lb-nav lb-prev" type="button" aria-label="Previous image" hidden>‹</button>
+    <button class="lb-nav lb-next" type="button" aria-label="Next image" hidden>›</button>
+    <p class="lb-count" hidden></p>`);
+  const prev = modal.querySelector(".lb-prev"), next = modal.querySelector(".lb-next"), count = modal.querySelector(".lb-count");
+  let list = [], at = 0;
+
+  const show = (i) => {
+    at = (i + list.length) % list.length;
+    body.innerHTML = `<img src="${esc(list[at])}" alt="">`;
+    count.textContent = `${at + 1} / ${list.length}`;
+  };
+  const setNav = (on) => { prev.hidden = next.hidden = count.hidden = !on; };
+  const close = () => { modal.hidden = true; body.innerHTML = ""; modal.classList.remove("image"); setNav(false); };
+
   document.addEventListener("click", (e) => {
     const shot = e.target.closest(".shot[data-full]");
     if (!shot) return;
-    body.innerHTML = `<img src="${esc(shot.dataset.full)}" alt="">`;
+    // Every image on the page, in order, with repeats removed
+    list = [...new Set([...document.querySelectorAll(".shot[data-full]")].map((el) => el.dataset.full))];
     modal.classList.add("image");
     modal.hidden = false;
+    setNav(list.length > 1);
+    show(list.indexOf(shot.dataset.full));
   });
+  prev.addEventListener("click", () => show(at - 1));
+  next.addEventListener("click", () => show(at + 1));
   document.getElementById("reel-close").addEventListener("click", close);
   modal.addEventListener("click", (e) => e.target === modal && close());
-  addEventListener("keydown", (e) => e.key === "Escape" && close());
+  addEventListener("keydown", (e) => {
+    if (modal.hidden) return;
+    if (e.key === "Escape") close();
+    if (!modal.classList.contains("image") || list.length < 2) return;
+    if (e.key === "ArrowLeft") show(at - 1);
+    if (e.key === "ArrowRight") show(at + 1);
+  });
+  let x0 = null;
+  modal.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), { passive: true });
+  modal.addEventListener("touchend", (e) => {
+    if (x0 === null || !modal.classList.contains("image") || list.length < 2) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
 }
 
 // ---------- Micro animations ----------

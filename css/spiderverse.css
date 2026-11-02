@@ -47,9 +47,6 @@
 /* Rule as a torn ink stroke */
 .rule { height: 6px; border-radius: 0; transform: skewX(-20deg); box-shadow: 3px 3px 0 var(--ink); }
 
-/* Modal pops in like a panel slam */
-.modal-body { animation: slam .35s steps(3) 1; }
-@keyframes slam { 0% { transform: scale(1.12) rotate(-2deg); } 66% { transform: scale(.98) rotate(1deg); } 100% { transform: none; } }
 
 /* Game page design sections */
 .mech, .loop li, .curve, .role-box, .swatch { border-color: var(--ink); border-width: 3px; box-shadow: 5px 5px 0 var(--ink); }
