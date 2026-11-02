@@ -357,6 +357,7 @@ const PROJECTS_3D = [
     renders: [
       "assets/images/3d-hellcat-4k.webp",
       "assets/images/3d-hellcat-headlight.webp",
+      "assets/images/3d-hellcat-side.webp",
       "assets/images/3d-hellcat-hood.webp",
       "assets/images/3d-dodge-hellcat.webp",
     ],
