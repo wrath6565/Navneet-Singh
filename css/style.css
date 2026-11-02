@@ -349,6 +349,8 @@ button.game-card:hover { border-color: var(--accent); }
 .shots.natural { grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); align-items: start; }
 .shots.natural .shot { aspect-ratio: auto; }
 .shots.natural .shot img { height: auto; }
+.clip { grid-column: 1 / -1; overflow: hidden; border-radius: 12px; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); background: #000; }
+.clip video { display: block; width: 100%; height: auto; }
 .shot { padding: 0; font: inherit; cursor: zoom-in; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; border: 2px solid var(--line); background: var(--panel); transition: border-color .3s, transform .4s var(--bounce); }
 .shot.tall { aspect-ratio: 9 / 16; }
 .shot.tall img { image-rendering: pixelated; }

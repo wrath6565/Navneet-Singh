@@ -325,8 +325,10 @@ if (projectPage) {
     const num = (id) => String(shown.findIndex(([x]) => x === id) + 1).padStart(2, "0");
     const head = (id) => `<h2 class="sub-title gd-title reveal" id="${id}"><span class="gd-num">${num(id)}</span>${shown.find(([x]) => x === id)[1]}</h2>`;
     const part = (id, html) => (shown.some(([x]) => x === id) ? head(id) + html : "");
-    const gallery = (imgs, label) => `<div class="shots natural">${imgs.map((src, i) =>
-      `<button type="button" class="shot reveal" style="--d:${i * 80}ms" data-full="${esc(src)}" aria-label="View ${esc(label)} ${i + 1} larger">${art(src, label)}</button>`).join("")}</div>`;
+    // Images open in the viewer; .mp4 clips play silently on a loop across the full row
+    const gallery = (imgs, label) => `<div class="shots natural">${imgs.map((src, i) => /\.mp4$/i.test(src)
+      ? `<div class="clip reveal"><video src="${esc(src)}" autoplay muted loop playsinline preload="metadata"></video></div>`
+      : `<button type="button" class="shot reveal" style="--d:${i * 80}ms" data-full="${esc(src)}" aria-label="View ${esc(label)} ${i + 1} larger">${art(src, label)}</button>`).join("")}</div>`;
     const specs = [["Category", p.category], ["Software", p.software], ["Year", p.year]].filter(([, v]) => v);
     const wire = p.wireframes || [], shaders = p.shaders || [], renders = p.renders || [];
     // The animation, if there is one, leads the page and loops. It starts muted (browsers
@@ -399,6 +401,9 @@ if (projectPage) {
       }, { threshold: 0.25 }).observe(el);
       document.addEventListener("visibilitychange", () => (document.hidden || !visible ? pause() : play()));
     }
+    // Looping clips in the sections only play while on screen
+    projectPage.querySelectorAll(".clip video").forEach((v) =>
+      new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(v));
   }
 }
 

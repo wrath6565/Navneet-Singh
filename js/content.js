@@ -322,7 +322,7 @@ const GAMES = [
  *   pitch     = one or two sentences under the title
  *   category, software, year = the facts list beside the poster
  *   overview  = a paragraph; role = what you did, if it was a team piece
- *   wireframes = ["assets/images/....webp", ...]
+ *   wireframes = ["assets/images/....webp", ...]   an .mp4 here plays as a silent looping clip
  *   shaders   = [{ image, name, text }, ...]   materials and shader breakdowns; name and text are optional
  *               or [{ name, images: [...] }, ...]   a titled group per material, e.g. node graph + result
  *   video     = "assets/video/....mp4" (your own file) or youtube = "VIDEO_ID"; it leads the page, looping, and pauses off screen
@@ -376,7 +376,7 @@ const PROJECTS_3D = [
     software: "Blender",
     year: "",
     overview: "",
-    wireframes: ["assets/images/3d-env-clay.webp"],
+    wireframes: ["assets/video/env-viewport.mp4", "assets/images/3d-env-clay.webp"],
     shaders: [
       { name: "Torii gate shader", images: ["assets/images/3d-env-nodes.webp", "assets/images/3d-env-torii.webp"] },
       { name: "Guard rail shader", images: ["assets/images/3d-env-rail-nodes.webp", "assets/images/3d-env-rail.webp"] },
