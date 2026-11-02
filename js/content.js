@@ -376,13 +376,17 @@ const PROJECTS_3D = [
     software: "",
     year: "",
     overview: "",
-    wireframes: [],
+    wireframes: [
+      "assets/images/3d-ps5-wireframe.webp",
+      "assets/images/3d-ps5-clay.webp",
+    ],
     shaders: [],
     video: "assets/video/ps5-controller.mp4",
     videoPoster: "assets/images/3d-ps5-controller-video.webp",
     youtube: "",
     renders: [
       "assets/images/3d-ps5-controller-wide.webp",
+      "assets/images/3d-ps5-studio.webp",
       "assets/images/3d-ps5-controller.webp",
     ],
   },
