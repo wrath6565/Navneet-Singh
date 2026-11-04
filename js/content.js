@@ -453,7 +453,7 @@ const PROJECTS_3D = [
     year: "",
     overview: "A personal project I made after finishing Hollow Knight, a 2D Metroidvania. In the game you fight the Hollow Knight at its lowest, sealed away. I wanted to create it as it was before that: a knight trained to fight the Radiance.",
     wireframes: ["assets/images/3d-char-wire.webp", "assets/images/3d-char-clay.webp"],
-    shaders: [{ name: "Metal shader", images: ["assets/images/3d-char-nodes.webp"] }],
+    shaders: [{ name: "Armour shader", images: ["assets/images/3d-char-nodes.webp"] }],
     renders: [
       "assets/images/3d-char-front.webp",
       "assets/images/3d-char-head.webp",
