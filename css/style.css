@@ -508,3 +508,6 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
 @media (max-width: 860px) { .projects-grid:not(:has(> :nth-child(6))) { grid-template-areas: "a a" "v1 v2" "b b" "c c"; grid-template-rows: 220px 340px 220px 300px; } }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+/* Hellcat cover: the car sits at the bottom, so a shorter shade keeps it visible under the title */
+.projects-grid > :nth-child(1) .game-art::after { background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 12%); }
+.projects-grid > :nth-child(1) .game-body { text-shadow: 0 2px 12px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.8); }
