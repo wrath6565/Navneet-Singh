@@ -208,6 +208,8 @@ a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .projects-grid > :nth-child(5) { grid-area: c; }
 .projects-grid > :nth-child(6) { grid-area: d; }
 .projects-grid > :nth-child(n+7) { display: none; }
+/* With five projects the last landscape card fills both lower rows */
+.projects-grid:not(:has(> :nth-child(6))) { grid-template-areas: "v1 a a" "v1 b b" "c c v2" "c c v2"; }
 .game-art.is-contain { background: #000; }
 .game-art.is-contain > img { object-fit: contain; object-position: center 35%; }
 button.game-card { font: inherit; color: inherit; text-align: left; padding: 0; cursor: zoom-in; aspect-ratio: auto; border-radius: 18px; border: 2px solid var(--line); background: var(--panel); }
@@ -503,3 +505,5 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
   .loop-ring .loop li:last-child::after { content: "↺"; }
   .loop-ring .loop-back { position: static; transform: none; width: auto; margin-top: 22px; }
 }
+
+@media (max-width: 860px) { .projects-grid:not(:has(> :nth-child(6))) { grid-template-areas: "a a" "v1 v2" "b b" "c c"; grid-template-rows: 220px 340px 220px 300px; } }

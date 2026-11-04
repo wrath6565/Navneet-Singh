@@ -442,7 +442,6 @@ const PROJECTS_3D = [
       "assets/images/3d-ps5-controller.webp",
     ],
   },
-  { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
   {
     slug: "character",
     title: "Hollow Knight",
