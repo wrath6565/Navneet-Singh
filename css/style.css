@@ -507,3 +507,4 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 }
 
 @media (max-width: 860px) { .projects-grid:not(:has(> :nth-child(6))) { grid-template-areas: "a a" "v1 v2" "b b" "c c"; grid-template-rows: 220px 340px 220px 300px; } }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
