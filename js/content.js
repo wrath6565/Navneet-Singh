@@ -443,7 +443,28 @@ const PROJECTS_3D = [
     ],
   },
   { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
-  { title: "Animation", type: "Motion", image: "", accent: "teal" },
+  {
+    slug: "character",
+    title: "Character",
+    type: "Character",
+    image: "assets/images/3d-char-front.webp",
+    accent: "teal",
+    status: "",
+    poster: "assets/images/3d-char-front.webp",
+    pitch: "",
+    category: "Character",
+    software: "Blender",
+    year: "",
+    overview: "",
+    wireframes: ["assets/images/3d-char-wire.webp", "assets/images/3d-char-clay.webp"],
+    shaders: [{ image: "assets/images/3d-char-nodes.webp" }],
+    renders: [
+      "assets/images/3d-char-front.webp",
+      "assets/images/3d-char-head.webp",
+      "assets/images/3d-char-torso.webp",
+      "assets/images/3d-char-back.webp",
+    ],
+  },
 ];
 
 const EXPLORATIONS = [
