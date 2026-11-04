@@ -408,7 +408,7 @@ const PROJECTS_3D = [
       { image: "assets/images/3d-hf-box-lock.webp" },
     ],
     renders: ["assets/images/3d-hf-box-ingame.webp"],
-    labels: { renders: "In-game render" },
+    labels: { wireframe: "Wireframe and UV map", shaders: "Texture map", renders: "In-game render" },
   },
   {
     slug: "ps5-controller",
