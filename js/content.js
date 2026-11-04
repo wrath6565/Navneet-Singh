@@ -345,7 +345,7 @@ const PROJECTS_3D = [
     category: "Vehicle · Hard surface",
     software: "Blender",
     year: "",
-    overview: "",
+    overview: "A personal project to learn hard surface modelling and animation, and to understand the style of high-end car advertisements and cinematics.",
     wireframes: [
       "assets/images/3d-hellcat-wireframe.webp",
       "assets/images/3d-hellcat-clay.webp",
@@ -376,7 +376,7 @@ const PROJECTS_3D = [
     category: "",
     software: "Blender",
     year: "",
-    overview: "",
+    overview: "Inspired by a Japanese motovlog by Ajay Pandey, where he stumbled upon an abandoned torii gate while riding his motorcycle. The vlog was shot in daylight, but I wanted to see how the place would look at night, so I recreated it as a night scene.",
     wireframes: ["assets/video/env-viewport.mp4", "assets/images/3d-env-clay.webp"],
     shaders: [
       { name: "Torii gate shader", images: ["assets/images/3d-env-nodes.webp", "assets/images/3d-env-torii.webp"] },
@@ -401,7 +401,8 @@ const PROJECTS_3D = [
     category: "Game Prop",
     software: "",
     year: "",
-    overview: "",
+    overview: "A storage box I made for Hyper Flux, a game that's live on Steam right now. It belongs to one of the game's worlds, a manufacturing and packaging planet where the player is stuck. To learn more, check out the Hyper Flux game project.",
+    overviewLink: { text: "Hyper Flux game project", href: "game.html?g=hyper-flux" },
     wireframes: ["assets/images/3d-hf-box-wire.webp", "assets/images/3d-hf-box-uv.webp"],
     shaders: [
       { image: "assets/images/3d-hf-box-paint.webp" },
@@ -423,7 +424,7 @@ const PROJECTS_3D = [
     category: "Product · Hard surface",
     software: "Blender",
     year: "",
-    overview: "",
+    overview: "A personal project studying a real-life object and learning organic hard surface modelling using booleans.",
     wireframes: [
       "assets/images/3d-ps5-wireframe.webp",
       "assets/images/3d-ps5-clay.webp",
@@ -454,7 +455,7 @@ const PROJECTS_3D = [
     category: "Character",
     software: "Blender",
     year: "",
-    overview: "",
+    overview: "A personal project I made after finishing Hollow Knight, a 2D Metroidvania. In the game you fight the Hollow Knight at its lowest, sealed away. I wanted to create it as it was before that: a knight trained to fight the Radiance.",
     wireframes: ["assets/images/3d-char-wire.webp", "assets/images/3d-char-clay.webp"],
     shaders: [{ image: "assets/images/3d-char-nodes.webp" }],
     renders: [

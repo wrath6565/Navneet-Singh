@@ -392,7 +392,7 @@ if (projectPage) {
 
       <section class="section accent-${esc(p.accent || "marigold")}">
         ${part("overview", `
-        ${p.overview ? `<p class="prose reveal">${esc(p.overview)}</p>` : soon()}
+        ${p.overview ? `<p class="prose reveal">${p.overviewLink ? esc(p.overview).replace(esc(p.overviewLink.text), `<a href="${esc(p.overviewLink.href)}">${esc(p.overviewLink.text)}</a>`) : esc(p.overview)}</p>` : soon()}
         ${p.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(p.role)}</p></div>` : ""}`)}
 
         ${part("wireframe", wire.length
