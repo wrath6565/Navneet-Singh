@@ -445,7 +445,7 @@ const PROJECTS_3D = [
   { title: "Vehicles", type: "Hard surface", image: "", accent: "rose" },
   {
     slug: "character",
-    title: "Character",
+    title: "Hollow Knight",
     type: "Character",
     image: "assets/images/3d-char-front.webp",
     accent: "teal",
