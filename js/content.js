@@ -350,8 +350,7 @@ const PROJECTS_3D = [
       "assets/images/3d-hellcat-clay.webp",
     ],
     shaders: [
-      { image: "assets/images/3d-hellcat-paint-nodes.webp" },
-      { image: "assets/images/3d-hellcat-hood.webp" },
+      { name: "Paint shader", images: ["assets/images/3d-hellcat-paint-nodes.webp", "assets/images/3d-hellcat-hood.webp"] },
     ],
     video: "assets/video/dodge-hellcat.mp4",
     videoPoster: "assets/images/3d-dodge-hellcat-video.webp",
