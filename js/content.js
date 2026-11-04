@@ -28,10 +28,10 @@ const SITE = {
    * slides = until there's a video, these screenshots play as a slow slideshow instead
    */
   showreel: {
-    file: "assets/video/showreel.mp4",
-    background: "assets/video/showreel-bg.mp4",
+    file: "assets/video/showreel-2.mp4",
+    background: "assets/video/showreel-2-bg.mp4",
     youtube: "",
-    poster: "assets/images/showreel-poster.webp",
+    poster: "assets/images/showreel-2-poster.webp",
     slides: [
       "assets/images/beatemup-fight.webp",
       "assets/images/hyperflux-2.webp",
