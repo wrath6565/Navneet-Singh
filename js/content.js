@@ -428,9 +428,7 @@ const PROJECTS_3D = [
       "assets/images/3d-ps5-clay.webp",
     ],
     shaders: [
-      { image: "assets/images/3d-ps5-nodes-1.webp" },
-      { image: "assets/images/3d-ps5-nodes-2.webp" },
-      { image: "assets/images/3d-ps5-closeup.webp" },
+      { name: "Plastic shader", images: ["assets/images/3d-ps5-nodes-1.webp", "assets/images/3d-ps5-nodes-2.webp", "assets/images/3d-ps5-closeup.webp"] },
     ],
     video: "assets/video/ps5-controller.mp4",
     videoPoster: "assets/images/3d-ps5-controller-video.webp",
