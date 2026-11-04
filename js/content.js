@@ -338,7 +338,7 @@ const PROJECTS_3D = [
     type: "Personal project",
     image: "assets/images/3d-dodge-hellcat.webp",
     accent: "rose",
-    coverHasTitle: true,
+    titleTop: true,
     status: "Personal project",
     poster: "assets/images/3d-dodge-hellcat.webp",
     pitch: "",
@@ -366,7 +366,7 @@ const PROJECTS_3D = [
   },
   {
     slug: "environment",
-    title: "Environment",
+    title: "Torii Gate",
     type: "Environment",
     image: "assets/images/3d-env-shrine.webp",
     accent: "teal",
