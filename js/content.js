@@ -195,7 +195,7 @@ const GAMES = [
     trailer: "",
     links: [],
     docs: [
-      { title: "Game Design Document", url: "https://claude.ai/artifact/SeD2rHPqbreBwznNV8aJT4", note: "Story, characters, move list, enemies, bosses, levels and build status" },
+      { title: "Game Design Document", url: "https://claude.ai/artifact/T7jN1RDmg6rMXatRyWkn2a", note: "Story, characters, move list, enemies, bosses, levels and build status" },
     ],
   },
   {
