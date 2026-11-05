@@ -187,10 +187,10 @@ const GAMES = [
     cover: "assets/images/dole-shole-poster-wide.webp",
     coverHasTitle: true,   // the cover already shows the game's name, so the card only adds the genre line
     screenshots: [
-      "assets/images/beatemup-select.webp",
-      "assets/images/beatemup-street.webp",
-      "assets/images/beatemup-fight.webp",
-      "assets/images/beatemup-boss.webp",
+      "assets/images/dole-shole-title.webp",
+      "assets/images/dole-shole-select.webp",
+      "assets/images/dole-shole-street.webp",
+      "assets/images/dole-shole-moves.webp",
     ],
     trailer: "",
     links: [],
