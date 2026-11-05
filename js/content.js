@@ -193,7 +193,7 @@ const GAMES = [
       "assets/images/dole-shole-moves.webp",
     ],
     trailer: "",
-    links: [],
+    links: [{ label: "Play on itch.io", url: "https://wrath65.itch.io/dole-shole" }],
     docs: [
       { title: "Game Design Document", url: "https://claude.ai/artifact/T7jN1RDmg6rMXatRyWkn2a", note: "Story, characters, move list, enemies, bosses, levels and build status" },
     ],
