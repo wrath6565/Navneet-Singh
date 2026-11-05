@@ -181,7 +181,7 @@ const GAMES = [
       intensity: [1.5, 3.3, 4.5, 2.5, 4.5, 5.5, 3, 5, 6.5, 4, 6.3, 7.5, 5, 7.8, 9.5],
       novelty:   [8, 4, 7, 8, 4, 7, 8, 4, 7, 8, 4, 7, 7, 5, 9],
       tension:   [2, 5, 7, 3, 7, 8, 3, 7, 8.5, 4, 8, 9, 5, 9, 10],
-      note: "Intensity comes from the planned enemy threat per section. Novelty and tension follow the pacing rules in the design bible.",
+      note: "Intensity comes from the planned enemy threat per section. Novelty and tension follow the pacing rules in the game design document.",
     },
     poster: "assets/images/dole-shole-poster.webp",
     cover: "assets/images/dole-shole-poster-wide.webp",
@@ -195,7 +195,7 @@ const GAMES = [
     trailer: "",
     links: [],
     docs: [
-      { title: "Design Bible", url: "https://claude.ai/artifact/SeD2rHPqbreBwznNV8aJT4", note: "Story, characters, move list, enemies, bosses, levels and build status" },
+      { title: "Game Design Document", url: "https://claude.ai/artifact/SeD2rHPqbreBwznNV8aJT4", note: "Story, characters, move list, enemies, bosses, levels and build status" },
     ],
   },
   {
