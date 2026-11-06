@@ -224,7 +224,10 @@ if (gamePage) {
     const list = (items) => items.map((x, i) => `<li class="reveal" style="--d:${i * 60}ms">${esc(x)}</li>`).join("");
 
     const shots = g.screenshots.length
-      ? g.screenshots.map((s, i) => `<button type="button" class="shot reveal${g.portrait ? " tall" : ""}" style="--d:${i * 80}ms" data-full="${esc(s)}" aria-label="View screenshot ${i + 1} larger">${art(s, g.title)}</button>`).join("")
+      ? g.screenshots.map((s, i) => /\.mp4$/i.test(s)
+        // .mp4 entries play as silent looping clips
+        ? `<div class="shot clip reveal" style="--d:${i * 80}ms"><video src="${esc(s)}" autoplay muted loop playsinline preload="metadata"></video></div>`
+        : `<button type="button" class="shot reveal${g.portrait ? " tall" : ""}" style="--d:${i * 80}ms" data-full="${esc(s)}" aria-label="View screenshot ${i + 1} larger">${art(s, g.title)}</button>`).join("")
       : [1, 2, 3].map((n, i) => `<div class="shot reveal" style="--d:${i * 80}ms">${art("", `Screenshot ${n}`, g.accent)}</div>`).join("");
 
     const docs = g.docs.length
@@ -299,6 +302,8 @@ if (gamePage) {
         ${g.docs.length ? `<h2 class="sub-title reveal">Documentation</h2>
         <div class="docs">${docs}</div>` : ""}
       </section>`;
+    gamePage.querySelectorAll(".shot.clip video").forEach((v) =>
+      new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(v));
     // The trailer starts muted (browsers only autoplay silent video) and pauses off screen
     const tv = gamePage.querySelector(".game-reel video");
     if (tv) {

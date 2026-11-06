@@ -113,8 +113,8 @@ const GAMES = [
     cover: "assets/images/hyperflux-poster.webp",
     coverHasTitle: true,
     screenshots: [
-      "assets/images/hyperflux-2.webp",
-      "assets/images/hyperflux-1.webp",
+      "assets/video/hyperflux-art-1.mp4",
+      "assets/video/hyperflux-art-2.mp4",
     ],
     trailer: "",
     trailerFile: "assets/video/hyperflux-trailer.mp4",
