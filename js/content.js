@@ -29,7 +29,7 @@ const SITE = {
    */
   showreel: {
     file: "assets/video/showreel-3.mp4",
-    background: "",
+    background: "assets/video/showreel-3-bg.mp4",
     youtube: "",
     poster: "assets/images/showreel-2-poster.webp",
     slides: [

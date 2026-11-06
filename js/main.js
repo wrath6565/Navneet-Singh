@@ -63,6 +63,10 @@ if (heroMedia) {
       `<video class="hero-video" src="${esc(reel.background || reel.file)}" ${reel.poster ? `poster="${esc(reel.poster)}"` : ""}
         autoplay muted loop playsinline preload="auto"></video>`
     );
+    // Some browsers skip autoplay until enough has loaded; nudge it once it can play
+    const hv = heroMedia.querySelector(".hero-video");
+    hv.muted = true;
+    hv.addEventListener("canplay", () => hv.paused && hv.play().catch(() => {}));
   } else if (reel.slides && reel.slides.length) {
     // No video yet: crossfade through gameplay stills with a slow pan
     heroMedia.insertAdjacentHTML(
