@@ -16,7 +16,7 @@ const SITE = {
   role: "Game Designer & 3D Artist",
   // The hero says "Hi, I'm a ..." and turns a 3D block between these
   roles: ["3D Artist", "Game Designer"],
-  tagline: "I make the games I want to play.",
+  tagline: "",
   intro: "Fun first. Everything after that is problem solving.",
   /*
    * SHOWREEL: plays at the very top of the site.

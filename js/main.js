@@ -265,7 +265,7 @@ if (gamePage) {
       </section>
 
       <nav class="gd-nav" aria-label="On this page">
-        ${GD_SECTIONS.map(([id, label], i) => `<a href="#${id}"><span>${String(i + 1).padStart(2, "0")}</span>${label}</a>`).join("")}
+        ${GD_SECTIONS.filter(([id]) => id !== "curves" || g.curve).map(([id, label], i) => `<a href="#${id}"><span>${String(i + 1).padStart(2, "0")}</span>${label}</a>`).join("")}
       </nav>
 
       <section class="section accent-${esc(g.accent)}">
@@ -290,14 +290,13 @@ if (gamePage) {
           : ""}
         <div class="shots${g.portrait ? " portrait" : ""}">${shots}</div>
 
-        ${gdHead("curves", 4)}
-        ${g.curve ? curveChart(g.curve) : soon()}
+        ${g.curve ? gdHead("curves", 4) + curveChart(g.curve) : ""}
 
         ${g.trailer ? `<h2 class="sub-title reveal">Trailer</h2>
           <div class="video reveal"><iframe src="${esc(g.trailer)}" title="${esc(g.title)} trailer" allowfullscreen></iframe></div>` : ""}
 
-        <h2 class="sub-title reveal">Documentation</h2>
-        <div class="docs">${docs}</div>
+        ${g.docs.length ? `<h2 class="sub-title reveal">Documentation</h2>
+        <div class="docs">${docs}</div>` : ""}
       </section>`;
   }
 }
