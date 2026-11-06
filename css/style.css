@@ -511,3 +511,4 @@ a.doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 /* Hellcat cover: the car sits at the bottom, so a shorter shade keeps it visible under the title */
 .projects-grid > :nth-child(1) .game-art::after { background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 12%); }
 .projects-grid > :nth-child(1) .game-body { text-shadow: 0 2px 12px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.8); }
+.game-reel { margin: 0 0 56px; }

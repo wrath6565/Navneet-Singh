@@ -269,6 +269,7 @@ if (gamePage) {
       </nav>
 
       <section class="section accent-${esc(g.accent)}">
+        ${g.trailerFile ? `<div class="video project-reel game-reel reveal"><video src="${esc(g.trailerFile)}"${g.trailerPoster ? ` poster="${esc(g.trailerPoster)}"` : ""} autoplay muted loop controls playsinline preload="auto"></video></div>` : ""}
         ${gdHead("overview", 0)}
         ${g.overview ? `<p class="prose reveal">${esc(g.overview)}</p>` : soon()}
         ${g.role ? `<div class="role-box reveal"><b>My role</b><p>${esc(g.role)}</p></div>` : ""}
@@ -298,6 +299,13 @@ if (gamePage) {
         ${g.docs.length ? `<h2 class="sub-title reveal">Documentation</h2>
         <div class="docs">${docs}</div>` : ""}
       </section>`;
+    // The trailer starts muted (browsers only autoplay silent video) and pauses off screen
+    const tv = gamePage.querySelector(".game-reel video");
+    if (tv) {
+      let seen = true;
+      new IntersectionObserver(([e]) => { seen = e.isIntersecting; seen && !document.hidden ? tv.play().catch(() => {}) : tv.pause(); }, { threshold: 0.25 }).observe(tv);
+      document.addEventListener("visibilitychange", () => (document.hidden || !seen ? tv.pause() : tv.play().catch(() => {})));
+    }
   }
 }
 

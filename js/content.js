@@ -117,6 +117,8 @@ const GAMES = [
       "assets/images/hyperflux-1.webp",
     ],
     trailer: "",
+    trailerFile: "assets/video/hyperflux-trailer.mp4",
+    trailerPoster: "assets/images/hyperflux-trailer-poster.webp",
     links: [
       { label: "Get it on Steam", url: "https://store.steampowered.com/app/2813890/Hyper_Flux/" },
     ],
