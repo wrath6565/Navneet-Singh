@@ -296,7 +296,7 @@ const GAMES = [
       "assets/images/horn-paused.webp",
     ],
     trailer: "",       // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
-    links: [],         // e.g. { label: "Play on itch.io", url: "https://wrath65.itch.io/..." }
+    links: [{ label: "Play on itch.io", url: "https://wrath65.itch.io/horn-ok-please" }],
     docs: [
       { title: "Game Design Document", url: "https://claude.ai/artifact/1qfrEE1BnVPwnG2atGEr7X", note: "Core loop, regions, economy, tension curve, UI, art and playtesting" },
     ],
