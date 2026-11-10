@@ -202,6 +202,7 @@ const GAMES = [
   },
   {
     slug: "rahu-1970",
+    locked: true,                         // card shows "Coming soon" and the page is closed; remove to open it
     title: "Rahu: 1970",                    // working title, rename anytime
     genre: "First-person stealth action",
     platform: "PC",

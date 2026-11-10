@@ -156,13 +156,14 @@ const gamesGrid = document.getElementById("games-grid");
 if (gamesGrid) {
   gamesGrid.innerHTML = GAMES.map(
     (g, i) => `
-    <a class="game-card reveal tilt accent-${esc(g.accent)}${g.coverHasTitle ? " cover-titled" : ""}" href="game.html?g=${encodeURIComponent(g.slug)}" style="--d:${i * 90}ms">
+    <${g.locked ? "div" : "a"} class="game-card reveal tilt accent-${esc(g.accent)}${g.coverHasTitle ? " cover-titled" : ""}${g.locked ? " is-locked" : ""}"${g.locked ? "" : ` href="game.html?g=${encodeURIComponent(g.slug)}"`} style="--d:${i * 90}ms">
+      ${g.locked ? `<span class="locked-badge">Coming soon</span>` : ""}
       <div class="game-art${g.portrait && !g.coverHasTitle ? " is-portrait" : ""}">${g.coverHasTitle ? art(g.cover, g.title) : g.portrait && g.screenshots.length ? art(g.screenshots[1] || g.screenshots[0], g.title) : cover(g)}</div>
       <div class="game-body">
         <h3>${esc(g.title)}</h3>
         <p class="game-meta">${esc(g.genre)} · ${g.team ? "Team dev" : "Solo dev"}</p>
       </div>
-    </a>`
+    </${g.locked ? "div" : "a"}>`
   ).join("");
 }
 
@@ -220,7 +221,12 @@ if (gamePage) {
   const slug = new URLSearchParams(location.search).get("g");
   const g = GAMES.find((x) => x.slug === slug);
 
-  if (!g) {
+  // A locked game (g.locked) has no page yet: anyone with the link sees "Coming soon"
+  if (g && g.locked) {
+    document.title = `${g.title} · ${SITE.name}`;
+    gamePage.innerHTML = `<section class="section"><h1 class="game-title">Coming soon</h1>
+      <p class="prose"><a href="index.html#games">Back to the games</a></p></section>`;
+  } else if (!g) {
     gamePage.innerHTML = `<section class="section"><h1 class="game-title">You Died</h1>
       <p class="prose">That game wasn't found. <a href="index.html#games">Return to the games</a></p></section>`;
   } else {
